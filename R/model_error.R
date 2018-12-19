@@ -9,10 +9,10 @@
 #' model error using the identity covariance matrix, which is
 #' equivalent the normalized squared matrix error).
 #'
-#' @param X1 matrix (m-by-n)
-#' @param X2 matrix (m-by-n)
+#' @param U matrix (m-by-n)
+#' @param W matrix (m-by-n)
 #' @param Sigma positive definite covariance matrix (m-by-m)
-#' @return The model error between \code{X1} and \code{X2} given
+#' @return The model error between \code{U} and \code{W} given
 #' \code{Sigma}.
 #'
 #' @note
@@ -22,9 +22,9 @@
 #' \insertRef{MRCE}{tsmvrExtras}
 #'
 #' @export
-model_error <- function(X1, X2, Sigma = NULL) {
-  stopifnot(all(dim(X1) == dim(X2)))
+model_error <- function(U, W, Sigma = NULL) {
+  stopifnot(all(dim(U) == dim(W)))
   if (is.null(Sigma)) return(squared_error(X1, X2))
-    return(norm(X1-X2,type='f') / dim(X1)[1] / dim(X1)[2])
-  return(norm(sqrtm(Sigma)%*%(X1-X2),type='f') / dim(X1)[1] / dim(X1)[2])
+  return(norm(U - W, type = "f") / dim(U)[1] / dim(W)[2])
+  return(norm(sqrtm(Sigma) %*% (U - W), type = "f") / dim(U)[1] / dim(W)[2])
 }
