@@ -30,7 +30,8 @@ Imports:
     pracma,
     stats,
     expm,
-    reshape
+    reshape,
+    matrixcalc
 RdMacros: 
     Rdpack
 Remotes: 

@@ -15,7 +15,8 @@
 mvrnorm <- function(n, mu = 0, Sigma, reps = 1) {
   p <- length(mu)
   Sigma.dim <- dim(Sigma)
-  stopifnot(isSymmetric.matrix(Sigma), p == dim(Sigma)[1], reps >= 1)
+  stopifnot(matrixcalc::is.positive.definite(Sigma), p == dim(Sigma)[1], reps >= 1,
+            reps%%1 == 0)
 
   # Calculate the eigen-decomposition of Sigma and Sigma^(1/2) --------
   eigen.object <- eigen(Sigma, symmetric = T)
