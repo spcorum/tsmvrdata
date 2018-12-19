@@ -41,7 +41,6 @@
 make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma, rho_x = 0.6,
                       type = "AR1", rho_err = 0.7, h = 0.9, a = 1, b = 1, n_edge = 1,
                       min_ev = 0.18, reps = 1, seed = NULL) {
-
   stopifnot(reps >= 1, type == "AR1" || type == "FGN" || type == "SFN")
   set.seed(seed)
 
@@ -63,7 +62,7 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma, rho_x = 0.
   # Calculate a random (list of draws of the) dataset -----------------
   X <- mvrnorm(n, rep(0, p), Sigma_x$covariance)
   B <- regressor_matrix(p, q, b1, b2)
-  XB = X %*% B
+  XB <- X %*% B
   E.list <- mvrnorm(n, rep(0, q), Sigma_err$covariance, reps)
   data.list <- as.list(rep(0, reps))
   for (i in 1:reps) {
@@ -77,5 +76,4 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma, rho_x = 0.
   }
 
   return(data.list)
-
 }
