@@ -1,6 +1,6 @@
 Package: tsmvrextras
 Title: Extra Features for tsmvr
-Version: 0.0.0.0000
+Version: 0.0.0.1
 Authors@R: 
     person(given = "Sean",
            family = "Corum",
