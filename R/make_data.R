@@ -51,10 +51,12 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma, rho_x = 0.
 
   # Calculate the auxillary and error covariance matrices --------------
   Sigma_x <- covariance_matrix(
-    p, type = "AR1", rho = rho_x
+    p,
+    type = "AR1", rho = rho_x
   )
   Sigma_err <- covariance_matrix(
-    q, type = type, rho = rho_err, h = h, power = power,
+    q,
+    type = type, rho = rho_err, h = h, power = power,
     zero_appeal = zero_appeal, n_edge = n_edge, min_ev = min_ev
   )
 

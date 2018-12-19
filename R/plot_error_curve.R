@@ -81,12 +81,12 @@ plot_error_curve <- function(hat, star, up = 1, low = -5, left = 0, right = 100,
 
   # Plot the error curves.
   plt <- ggplot2::ggplot(df, ggplot2::aes(x = iteration, y = value, colour = variable)) +
-      ggplot2::geom_line(size = 1) +
-      ggplot2::xlab("t") +
-      ggplot2::xlim(left, right) +
-      ggplot2::ylab("log2 Frobenius norm") +
-      ggplot2::ylim(low, up) +
-      ggplot2::scale_color_manual(
+    ggplot2::geom_line(size = 1) +
+    ggplot2::xlab("t") +
+    ggplot2::xlim(left, right) +
+    ggplot2::ylab("log2 Frobenius norm") +
+    ggplot2::ylim(low, up) +
+    ggplot2::scale_color_manual(
       labels =
         c(
           expression(group("|", B^t - B^"*", "|")[F]),
@@ -94,7 +94,7 @@ plot_error_curve <- function(hat, star, up = 1, low = -5, left = 0, right = 100,
         ),
       values = c("blue", "red")
     ) +
-      ggplot2::theme(
+    ggplot2::theme(
       legend.title = ggplot2::element_blank(),
       legend.position = c(0.22, 0.25),
       legend.background = ggplot2::element_rect(

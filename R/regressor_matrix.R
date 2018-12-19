@@ -22,12 +22,12 @@
 #' @references \insertRef{MRCE}{tsmvrextras}
 #'
 #' @export
-regressor_matrix = function(p, q, b1 = sqrt(0.1), b2 = sqrt(0.1),
+regressor_matrix <- function(p, q, b1 = sqrt(0.1), b2 = sqrt(0.1),
                              seed = NULL) {
   set.seed(seed)
-  W = matrix(stats::rnorm(p * q), nrow = p, ncol = q)
-  K = matrix(rbern(p * q, b1), nrow = p, ncol = q)
-  Q = matrix(0, nrow = p, ncol = q)
-  for (l in 1:p) Q[l, ] = rep(rbern(1, b2), q)
+  W <- matrix(stats::rnorm(p * q), nrow = p, ncol = q)
+  K <- matrix(rbern(p * q, b1), nrow = p, ncol = q)
+  Q <- matrix(0, nrow = p, ncol = q)
+  for (l in 1:p) Q[l, ] <- rep(rbern(1, b2), q)
   return(W * K * Q)
 }
