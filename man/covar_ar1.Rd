@@ -9,7 +9,7 @@ covar_ar1(q, rho = 0.7)
 \arguments{
 \item{q}{dimension of covariance matrix (positive integer)}
 
-\item{rho}{autoregression parameter (0 < \code{rho} < 1)}
+\item{rho}{autoregression parameter (0 <= \code{rho} <= 1)}
 }
 \value{
 Returns an AR(1) covariance matrix of parameter \eqn{\rho} and
