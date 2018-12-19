@@ -80,9 +80,11 @@ plot_error_curve <- function(hat, star, up = 1, low = -5, left = 0, right = 100,
   df$iteration <- 1:k
 
   # Plot the error curves.
-  plt <- ggplot2::ggplot(df, ggplot2::aes(x = iteration,
-                                          y = value,
-                                          colour = variable)) +
+  plt <- ggplot2::ggplot(df, ggplot2::aes(
+    x = iteration,
+    y = value,
+    colour = variable
+  )) +
     ggplot2::geom_line(size = 1) +
     ggplot2::xlab("t") +
     ggplot2::xlim(left, right) +
