@@ -1,14 +1,38 @@
 Package: tsmvrextras
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Extra Features for tsmvr
+Version: 0.0.0.0000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Sean",
+           family = "Corum",
            role = c("aut", "cre"),
-           email = "first.last@example.com")
-Description: What the package does (one paragraph).
-License: What license it uses
+           email = "spcorum@gmail.com")
+Description: This package contains extra features and
+    functions for the Truly Sparse Multivariate Regression (tsmvr)
+    package. These features include (1) functions for creating and
+    evaluate sparse regression datasets that work will with tsmvr, (2)
+    real datasets pre-processed to work with tsmvr (pre-processing
+    functions included), and (3) functions for testing a pipeline of (a)
+    running the algorithm on synthetic data and then evaluating the
+    results or (b) running the on real data and evaluating the
+    results.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    tsmvr (>= 0.1.1),
+    ggplot2,
+    AUC,
+    MASS,
+    igraph,
+    pROC,
+    Rdpack,
+    pracma,
+    stats
+Remotes: 
+    spcorum/tsmvr
+Suggests: 
+    covr,
+    testthat
+RoxygenNote: 6.1.0
 URL: https://github.com/spcorum/tsmvrextras
 BugReports: https://github.com/spcorum/tsmvrextras/issues
