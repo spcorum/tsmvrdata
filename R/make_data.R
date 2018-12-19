@@ -1,7 +1,7 @@
 #' Make a synthetic dataset
 #'
 #' Creates a random synthetic dataset for sparse multivariate
-#' regression accoring to the model:
+#' regression according to the model:
 #' \deqn{Y = BX + E,}
 #' where \eqn{X} is the design matrix, \eqn{B} is the regressor
 #' matrix, \eqn{Y} is the response matrix, and \eqn{E} is the matrix
@@ -9,9 +9,9 @@
 #'
 #' @param n number of observations (positive integer)
 #' @param p number of regressor features (positive integer)
-#' @param q number of responses (postive integer)
-#' @param b1 Beornoulli parameter for controlling regressor matrix sparsity (positive integer)
-#' @param b2 another Beornoulli parameter for controlling regressor matrix sparsity (positive integer)
+#' @param q number of responses (positive integer)
+#' @param b1 Bernoulli parameter for controlling regressor matrix sparsity (positive integer)
+#' @param b2 another Bernoulli parameter for controlling regressor matrix sparsity (positive integer)
 #' @param sigma scale of error term (positive numeric)
 #' @param rho_x autoregression parameter for design matrix covariance matrix (0 < \code{rho} < 1)
 #' @param type type of covariance matrix (string: 'AR1', 'FGN', or 'SFN')

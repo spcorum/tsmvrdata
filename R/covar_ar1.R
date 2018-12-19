@@ -3,10 +3,10 @@
 #' Constructs a first order autoregression [AR(1)] covariance matrix.
 #'
 #' @param q dimension of covariance matrix (positive integer)
-#' @param rho autoregression paramter (0 < \code{rho} < 1)
+#' @param rho autoregression parameter (0 < \code{rho} < 1)
 #' @references
 #' \insertRef{MRCE}{tsmvrextras}
-#' @return Returns an AR(1) covariance matrix of paramter \eqn{\rho} and
+#' @return Returns an AR(1) covariance matrix of parameter \eqn{\rho} and
 #' dimension \eqn{q x q}.
 #' @export
 covar_ar1 <- function(q, rho = 0.7) {

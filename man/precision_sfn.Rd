@@ -23,7 +23,7 @@ Returns an FGN covariance matrix.
 }
 \description{
 Constructs a scale free network (SFN) precision matrix according
-to the Barababasi algorithm.
+to the Barabasi algorithm.
 }
 \note{
 See also \code{\link[igraph]{get.adjacency}},

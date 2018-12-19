@@ -3,7 +3,7 @@
 #' Calculates the error curve for a list of matrices
 #'
 #' Given a list of matrices representing iterates of some optimization
-#' algorithm and an optional "groud truth" matrix \code{Star}, this
+#' algorithm and an optional "ground truth" matrix \code{Star}, this
 #' function calculates the "error curve", which is the Frobenius norm
 #' between each iterate and (1) the final iterate (if \code{Star} is
 #' not specified) or (2) the ground truth (if \code{Star} is specified).

@@ -6,7 +6,7 @@
 #'
 #' @param q dimension of covariance matrix (positive integer)
 #' @param type type of covariance matrix (string: 'AR1', 'FGN', or 'SFN')
-#' @param rho autoregression paramter for AR(1) covariance matrix (0 < \code{rho_err} < 1)
+#' @param rho autoregression parameter for AR(1) covariance matrix (0 < \code{rho_err} < 1)
 #' @param h Hurst parameter for FGN covariance matrix (0 < \code{H} < 1)
 #' @param power scaling power for SFN covariance matrix (positive numeric)
 #' @param zero_appeal Barabasi algorithm baseline attractiveness for SFN covariance matrix (positive numeric)

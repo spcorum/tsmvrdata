@@ -1,7 +1,7 @@
 #' Precision matrix of scale free network
 #'
 #' Constructs a scale free network (SFN) precision matrix according
-#' to the Barababasi algorithm.
+#' to the Barabasi algorithm.
 #'
 #' @param q square dimension of covariance matrix (positive integer)
 #' @param power power of the preferential attachment, (\code{a} > 0, default 1 or linear preferential attachment)

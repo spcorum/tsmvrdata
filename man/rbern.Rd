@@ -4,7 +4,7 @@
 \alias{rbern}
 \title{Bernoulli random number generator.}
 \usage{
-rbern(n, p)
+rbern(n, p = 0.5)
 }
 \arguments{
 \item{n}{number of draws}

@@ -15,6 +15,7 @@ Description: This package contains extra features and
     running the algorithm on synthetic data and then evaluating the
     results or (b) running the on real data and evaluating the
     results.
+Language: en-US
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

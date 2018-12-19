@@ -12,7 +12,7 @@ covariance_matrix(q, type = "AR1", rho = 0.7, h = 0.9, power = 1,
 
 \item{type}{type of covariance matrix (string: 'AR1', 'FGN', or 'SFN')}
 
-\item{rho}{autoregression paramter for AR(1) covariance matrix (0 < \code{rho_err} < 1)}
+\item{rho}{autoregression parameter for AR(1) covariance matrix (0 < \code{rho_err} < 1)}
 
 \item{h}{Hurst parameter for FGN covariance matrix (0 < \code{H} < 1)}
 

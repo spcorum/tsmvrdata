@@ -12,7 +12,7 @@ plot_error_curve(hat, star, up = 1, low = -5, left = 0,
 and the final iterate}
 
 \item{star}{numeric vector representing the errors between iterates
-and the ground trush}
+and the ground truth}
 
 \item{up}{upper limit of vertical axis}
 

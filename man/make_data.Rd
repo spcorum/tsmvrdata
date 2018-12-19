@@ -14,11 +14,11 @@ make_data(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma,
 
 \item{p}{number of regressor features (positive integer)}
 
-\item{q}{number of responses (postive integer)}
+\item{q}{number of responses (positive integer)}
 
-\item{b1}{Beornoulli parameter for controlling regressor matrix sparsity (positive integer)}
+\item{b1}{Bernoulli parameter for controlling regressor matrix sparsity (positive integer)}
 
-\item{b2}{another Beornoulli parameter for controlling regressor matrix sparsity (positive integer)}
+\item{b2}{another Bernoulli parameter for controlling regressor matrix sparsity (positive integer)}
 
 \item{sigma}{scale of error term (positive numeric)}
 
@@ -55,7 +55,7 @@ See also \code{\link{regressor_matrix}},
 }
 \description{
 Creates a random synthetic dataset for sparse multivariate
-regression accoring to the model:
+regression according to the model:
 \deqn{Y = BX + E,}
 where \eqn{X} is the design matrix, \eqn{B} is the regressor
 matrix, \eqn{Y} is the response matrix, and \eqn{E} is the matrix
