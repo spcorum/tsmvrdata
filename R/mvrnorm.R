@@ -24,9 +24,12 @@ mvrnorm <- function(n, mu = 0, Sigma, reps = 1) {
   # n-by-p matrix that is row-wise iid N_p(mu,Sigma)
   N.list <- as.list(rep(0, reps))
   for (i in 1:reps) {
-      Z <- matrix(rnorm(n * p), nrow = n, ncol = p)
-      N.list[[i]] <- rep(1, n) %*% t(mu) + Z %*% Sigma.sqrt
+    Z <- matrix(rnorm(n * p), nrow = n, ncol = p)
+    N.list[[i]] <- rep(1, n) %*% t(mu) + Z %*% Sigma.sqrt
   }
-  if (reps == 1) return(N.list[[1]])
-  else return(N.list)
+  if (reps == 1) {
+    return(N.list[[1]])
+  } else {
+    return(N.list)
+  }
 }

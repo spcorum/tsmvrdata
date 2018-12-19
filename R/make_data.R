@@ -39,7 +39,7 @@
 #' \insertRef{MRCE}{tsmvrExtras}
 #'
 #' @export
-make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1, rho_x = 0.6,
+make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma, rho_x = 0.6,
                       type = "AR1", vary_x = T, rho_err = 0.7, h = 0.9, a = 1, b = 1, n_edge = 1,
                       min_ev = 0.18, reps = 1, seed = NULL) {
   stopifnot(reps >= 1, type == "AR1" || type == "FGN" || type == "SFN")
@@ -53,34 +53,18 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1, rho_x 
   # Calculate the auxillary covariance matrix --------------------------
   Sigma_x <- covmat_ar1(p, rho_x)
 
-  # Calculate list of covariance (precision) matrices ------------------
-
-  # if (type=='AR1') Sigma.E = covmat_ar1(q, rho_err)
-  # else if (type=='FGN') Sigma.E = covmat_fgn(q, H)
-  # else if (type=='SFN') {
-  #     Omega = covmat_sfn(q,a=a,b=b,n_edge=n_edge,
-  #                               min_ev=min_ev)
-  #     Sigma.E = chol2inv(chol(Omega))
-  # }
-  # if (type=='AR1'||type=='FGN')
-  #     Omega = zapsmall(chol2inv(chol(Sigma.E)))
-
-  Sigma_list <- covariance_matrix(
-    q, sigma, rho_x, type, rho_err, h,
-    power, n_edge, min_ev, reps, min_ev
+  Sigma_x <- covariance_matrix(
+      p, sigma=sigma, rho_x=rho_x, type='AR1', reps=reps
   )
 
-  # if (reps==1) {  # Single simulations.
-  #     X = mvrnorm(n,rep(0,p),Sigma.X)
-  #     E = mvrnorm(n,rep(0,q),Sigma.E)
-  #     B = regressor_matrix(p,q,b1,b2)
-  #     Y = X%*%B+sigma^2*E
-  #     return(list(X=X, Y=Y, B.star=B, Omega.star=Omega,
-  #                 Sigma.E=Sigma.E, Sigma.X=Sigma.X))
-  # } else {  # Multiple simulations.
+  # Calculate list of covariance (precision) matrices ------------------
+  Sigma_err <- covariance_matrix(
+      q, sigma=sigma, rho_err=rho_err, type='AR1', reps=reps
+  )
 
-  X.list <- mvrnorm(n, rep(0, p), Sigma_x_list, reps)
-  E.list <- mvrnorm(n, rep(0, q), Sigma_list$covariance, reps)
+  # Calculate a random (list of random draws of the) dataset -----------
+  X.list <- mvrnorm(n, rep(0, p), Sigma_x, reps)
+  E.list <- mvrnorm(n, rep(0, q), Sigma_err$covariance, reps)
   data.list <- as.list(rep(0, reps))
   for (i in 1:reps) {
     B <- regressor_matrix(p, q, b1, b2)
