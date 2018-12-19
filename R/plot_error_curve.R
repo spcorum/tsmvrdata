@@ -21,76 +21,91 @@
 #' \code{\link{error_curve}}.
 #'
 #' @export
-plot_error_curve <- function(hat,star,up=1,low=-5,left=0,right=100,
-                             auto=T) {
+plot_error_curve <- function(hat, star, up = 1, low = -5, left = 0, right = 100,
+                             auto = T) {
+  k <- length(hat)
+  stopifnot(k == length(star))
+  hat <- log2(hat)
+  star <- log2(star)
 
-    k <- length(hat)
-    stopifnot(k == length(star))
-    hat = log2(hat)
-    star = log2(star)
+  # If auto == T, calculate automatic axes limits.
+  if (auto == T) {
+    left <- 0
 
-    # If auto == T, calculate automatic axes limits.
-    if (auto == T) {
-
-        left = 0
-
-        # Tricky one is the left horizontal axis limit. First find
-        # where the star error curve flattens within a tolerance "x",
-        # and then plot some extra to the right of that (5 extra
-        # iterations if x < 25 or 20% more if x > 25).
-        tol = 1e-3
-        r.logical = which((gradient(star) < tol) == T)
-        if (length(r.logical) == 0)
-            right = length(star)
-        else {
-            x = min(r.logical)
-            if (x < 25) right = x + 5
-            else right = round(1.2*x)
-        }
-
-        # Find general place of left-right axis limits, and then
-        # scale so there is some scaled white space below and above
-        # the two curves.
-        slace = 0.15
-        y = max(c(hat[0], star[0]))
-        z = min(c(hat[right], star[right]))
-        if (y <= z) {   # (enzure y > z, and if not flip)
-            t = y
-            y = z
-            z = t
-        }
-        if (y >= 0) up = (1+scale)*y
-        else up = (1-scale)*y
-        if (z <= 0) low = (1+scale)*z
-        else low = (1-scale)*z
+    # Tricky one is the left horizontal axis limit. First find
+    # where the star error curve flattens within a tolerance "x",
+    # and then plot some extra to the right of that (5 extra
+    # iterations if x < 25 or 20% more if x > 25).
+    tol <- 1e-3
+    r.logical <- which((gradient(star) < tol) == T)
+    if (length(r.logical) == 0) {
+      right <- length(star)
+    } else {
+      x <- min(r.logical)
+      if (x < 25) {
+        right <- x + 5
+      } else {
+        right <- round(1.2 * x)
+      }
     }
 
-    # Place error curve vectors into dataframe for plotting.
-    df <- as.data.frame(star)
-    df$hat <- hat
-    names(df) <- c('Truth','Estimate')
-    df <- melt(df)
-    df$iteration <- 1:k
+    # Find general place of left-right axis limits, and then
+    # scale so there is some scaled white space below and above
+    # the two curves.
+    slace <- 0.15
+    y <- max(c(hat[0], star[0]))
+    z <- min(c(hat[right], star[right]))
+    if (y <= z) { # (enzure y > z, and if not flip)
+      t <- y
+      y <- z
+      z <- t
+    }
+    if (y >= 0) {
+      up <- (1 + scale) * y
+    } else {
+      up <- (1 - scale) * y
+    }
+    if (z <= 0) {
+      low <- (1 + scale) * z
+    } else {
+      low <- (1 - scale) * z
+    }
+  }
 
-    # Plot the error curves.
-    plt <- ggplot(df, aes(x = iteration, y = value, colour = variable)) +
-        geom_line(size=1) +
-        xlab('t') +
-        xlim(left, right) +
-        ylab('log2 Frobenius norm') +
-        ylim(low, up) +
-        scale_color_manual(labels =
-                               c(expression(group("|", B^t - B^"*", "|")[F]),
-                                 expression(group("|", B^t - hat(B), "|")[F])),
-                           values = c("blue", "red")) +
-        theme(legend.title=element_blank(),
-              legend.position = c(0.22, 0.25),
-              legend.background = element_rect(color = "black",
-                                               linetype = "solid", size = 0.3),
-              axis.text=element_text(size=20),
-              axis.title=element_text(size=24,face="bold"),
-              legend.text = element_text(size=20, face="bold"))
+  # Place error curve vectors into dataframe for plotting.
+  df <- as.data.frame(star)
+  df$hat <- hat
+  names(df) <- c("Truth", "Estimate")
+  df <- melt(df)
+  df$iteration <- 1:k
 
-    # Return the plot handle.
-    return(plt)
+  # Plot the error curves.
+  plt <- ggplot(df, aes(x = iteration, y = value, colour = variable)) +
+    geom_line(size = 1) +
+    xlab("t") +
+    xlim(left, right) +
+    ylab("log2 Frobenius norm") +
+    ylim(low, up) +
+    scale_color_manual(
+      labels =
+        c(
+          expression(group("|", B^t - B^"*", "|")[F]),
+          expression(group("|", B^t - hat(B), "|")[F])
+        ),
+      values = c("blue", "red")
+    ) +
+    theme(
+      legend.title = element_blank(),
+      legend.position = c(0.22, 0.25),
+      legend.background = element_rect(
+        color = "black",
+        linetype = "solid", size = 0.3
+      ),
+      axis.text = element_text(size = 20),
+      axis.title = element_text(size = 24, face = "bold"),
+      legend.text = element_text(size = 20, face = "bold")
+    )
+
+  # Return the plot handle.
+  return(plt)
 }

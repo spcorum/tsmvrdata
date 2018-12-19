@@ -7,4 +7,4 @@
 #' @return Returns a vector of length \code{n} with each entry drawn
 #' iid. from Bern(\eqn{p}).
 #' @export
-rbern = function(n, p) return(1 * (stats::runif(n) < p))
+rbern <- function(n, p) return(1 * (stats::runif(n) < p))

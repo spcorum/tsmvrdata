@@ -24,24 +24,24 @@
 #' \code{\link{model_error}}.
 #'
 #' @export
-evaluate_model = function(Star,Hat,Sigma=NULL) {
+evaluate_model <- function(Star, Hat, Sigma = NULL) {
+  se <- squared_error(Star, Hat)
+  me <- model_error(Star, Hat, Sigma)
+  p <- sum(Star != 0)
+  n <- sum(Star == 0)
+  tp <- sum(Star != 0 & Hat != 0)
+  tn <- sum(Star == 0 & Hat == 0)
+  fp <- sum(Star == 0 & Hat != 0)
+  fn <- sum(Star != 0 & Hat == 0)
+  tpr <- tp / p
+  tnr <- tn / n
+  f1 <- 2 * tp / (2 * tp + fp + fn)
+  acc <- (tp + tn) / (tp + tn + fp + fn)
+  roc_object <- roc(as.vector((Hat != 0) * 1), as.vector((Star != 0) * 1))
+  AUC <- auc(roc_object)[[1]]
 
-    se <- squared_error(Star,Hat)
-    me <- model_error(Star,Hat,Sigma)
-    P <- sum(Star!=0)
-    N <- sum(Star==0)
-    TP <- sum(Star!=0 & Hat!=0)
-    TN <- sum(Star==0 & Hat==0)
-    FP <- sum(Star==0 & Hat!=0)
-    FN <- sum(Star!=0 & Hat==0)
-    TPR = TP/P
-    TNR = TN/N
-    F1 = 2*TP/(2*TP+FP+FN)
-    ACC <- (TP+TN) / (TP+TN+FP+FN)
-    roc.object <- roc(as.vector((Hat!=0)*1),as.vector((Star!=0)*1))
-    AUC <- auc(roc.object)[[1]]
-
-    return(list(squared_error=se, model_error=me, tp=TP, tn=TN, fp=FP,
-                fn=FN, tpr=TPR, tnr=TNR, acc=ACC, auc=AUC, f1=F1))
-
+  return(list(
+    squared_error = se, model_error = me, tp = tp, tn = tn, fp = fp,
+    fn = fn, tpr = tpr, tnr = tnr, acc = acc, auc = auc, f1 = F1
+  ))
 }

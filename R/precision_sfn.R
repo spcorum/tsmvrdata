@@ -20,17 +20,23 @@
 #'
 #' @return Returns an FGN covariance matrix.
 #' @export
-precision_sfn = function(q, power=1, zero_appeal=1, n_edge=1,
-                         min_ev=0.18) {
-    stopifnot(q%%1==0, q>0, a>=0, b>0, n_edge%%1==0, n_edge>0,
-              min_ev>=0)
-    Sigma <- as.matrix(get.adjacency(barabasi.game(n=q,m=n_edge,
-                                                   power=power,
-                                                   zero_appeal=zero_appeal,
-                                                   directed=F,
-                                                   algorithm='psumtree')))
-    min.lambda <- min(eigen(Sigma)$values)
-    if (min.lambda <= 0) Sigma <- Sigma +
-        (abs(min.lambda)+min_ev)*diag(q)
-    return (Sigma)
+precision_sfn <- function(q, power = 1, zero_appeal = 1, n_edge = 1,
+                          min_ev = 0.18) {
+  stopifnot(
+    q %% 1 == 0, q > 0, a >= 0, b > 0, n_edge %% 1 == 0, n_edge > 0,
+    min_ev >= 0
+  )
+  Sigma <- as.matrix(get.adjacency(barabasi.game(
+    n = q, m = n_edge,
+    power = power,
+    zero_appeal = zero_appeal,
+    directed = F,
+    algorithm = "psumtree"
+  )))
+  min.lambda <- min(eigen(Sigma)$values)
+  if (min.lambda <= 0) {
+    Sigma <- Sigma +
+      (abs(min.lambda) + min_ev) * diag(q)
+  }
+  return(Sigma)
 }

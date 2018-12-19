@@ -20,23 +20,24 @@
 #' @return A list of two matrices, the \code{covariance} matrix and the
 #' \code{precision} matrix.
 #' @export
-covariance_matrix = function(q, rho_x=0.6, type='AR1', rho_err=0.7, H=0.9,
-                             power=1, zero_appeal=1, n_edge=1,
-                             min_ev=0.18) {
-
-    Sigma.X = covmat_ar1(p, rho_x)
-    if (type=='AR1') {
-        covariance = covmat_ar1(q, rho_err)
-        precision = zapsmall(chol2inv(chol(covariance)))
-    }
-    else if (type=='FGN') {
-        covariance = covmat_fgn(q, H)
-        precision = zapsmall(chol2inv(chol(covariance)))
-    }
-    else if (type=='SFN') {
-        precision = covmat_sfn(q,power=power,zero_appeal=zero_appeal,
-                               n_edge=n_edge,min_ev=min_ev)
-        covariance = zapsmall(chol2inv(chol(precision)))
-    }
-    return(list(covariance = covariance, precision = precision))
+covariance_matrix <- function(q, rho_x = 0.6, type = "AR1", rho_err = 0.7, H = 0.9,
+                              power = 1, zero_appeal = 1, n_edge = 1,
+                              min_ev = 0.18) {
+  # Sigma.X <- covmat_ar1(p, rho_x)
+  if (type == "AR1") {
+    covariance <- covmat_ar1(q, rho_err)
+    precision <- zapsmall(chol2inv(chol(covariance)))
+  }
+  else if (type == "FGN") {
+    covariance <- covmat_fgn(q, H)
+    precision <- zapsmall(chol2inv(chol(covariance)))
+  }
+  else if (type == "SFN") {
+    precision <- covmat_sfn(q,
+      power = power, zero_appeal = zero_appeal,
+      n_edge = n_edge, min_ev = min_ev
+    )
+    covariance <- zapsmall(chol2inv(chol(precision)))
+  }
+  return(list(covariance = covariance, precision = precision))
 }

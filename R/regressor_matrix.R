@@ -22,10 +22,10 @@
 #' \insertRef{MRCE}{tsmvrExtras}
 #'
 #' @export
-regressor_matrix = function(p,q,b1=sqrt(0.1),b2=sqrt(0.1)) {
-    W = matrix(rnorm(p*q), nrow=p, ncol=q)
-    K = matrix(tsmvr.rbern(p*q,b1), nrow=p, ncol=q)
-    Q = matrix(0, nrow=p, ncol=q)
-    for (l in 1:p) Q[l,] = rep(tsmvr.rbern(1,b2),q)
-    return (W*K*Q)
+regressor_matrix <- function(p, q, b1 = sqrt(0.1), b2 = sqrt(0.1)) {
+  W <- matrix(rnorm(p * q), nrow = p, ncol = q)
+  K <- matrix(tsmvr.rbern(p * q, b1), nrow = p, ncol = q)
+  Q <- matrix(0, nrow = p, ncol = q)
+  for (l in 1:p) Q[l, ] <- rep(tsmvr.rbern(1, b2), q)
+  return(W * K * Q)
 }

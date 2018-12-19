@@ -22,8 +22,8 @@
 #' \insertRef{MRCE}{tsmvrExtras}
 #'
 #' @export
-model_error = function(X1,X2,Sigma=NULL) {
-    stopifnot(all(dim(X1)==dim(X2)))
-    if (is.null(Sigma)) return(squared_error(X1,X2))
-    return (1/(dim(X1)[1]*dim(X1)[2])*tr(crossprod(X1-X2)%*%Sigma))
+model_error <- function(X1, X2, Sigma = NULL) {
+  stopifnot(all(dim(X1) == dim(X2)))
+  if (is.null(Sigma)) return(squared_error(X1, X2))
+  return(1 / (dim(X1)[1] * dim(X1)[2]) * tr(crossprod(X1 - X2) %*% Sigma))
 }
