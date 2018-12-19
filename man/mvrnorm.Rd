@@ -12,9 +12,14 @@ mvrnorm(n, mu = 0, Sigma, reps = 1)
 \item{mu}{mean (\eqn{\mu})}
 
 \item{Sigma}{positive definite covariance matrix (\eqn{\Sigma})}
+
+\item{reps}{number of random matrix realizations to return}
 }
 \value{
-Returns a matrix of \code{n} stacked vectors, each an iid. realization of \eqn{N(\mu,\Sigma)}.
+Returns a \code{rep} length list of matrices of \code{n}
+stacked vectors, each an iid. realization of \eqn{N(\mu,\Sigma)}.
+If \code{reps}=1, then a single matrix returned not in a list. Otherwise,
+\code{reps} matrices are returned in a list.
 }
 \description{
 Generates vectors iid. from the multivariate normal distribution.

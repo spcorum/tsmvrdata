@@ -20,12 +20,11 @@
 #' \code{f1}, F1 score \cr
 #'
 #' @note
-#' See also \code{\link{squared_error}} and
-#' \code{\link{model_error}}.
+#' Also see \code{\link{model_error}}.
 #'
 #' @export
 evaluate_model <- function(Star, Hat, Sigma = NULL) {
-  se <- squared_error(Star, Hat)
+  se <- model_error(Star, Hat)
   me <- model_error(Star, Hat, Sigma)
   p <- sum(Star != 0)
   n <- sum(Star == 0)
@@ -37,8 +36,8 @@ evaluate_model <- function(Star, Hat, Sigma = NULL) {
   tnr <- tn / n
   f1 <- 2 * tp / (2 * tp + fp + fn)
   acc <- (tp + tn) / (tp + tn + fp + fn)
-  roc_object <- roc(as.vector((Hat != 0) * 1), as.vector((Star != 0) * 1))
-  AUC <- auc(roc_object)[[1]]
+  roc_object <- pROC::roc(as.vector((Hat != 0) * 1), as.vector((Star != 0) * 1))
+  AUC <- AUC::auc(roc_object)[[1]]
 
   return(list(
     squared_error = se, model_error = me, tp = tp, tn = tn, fp = fp,

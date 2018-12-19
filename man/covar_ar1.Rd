@@ -19,5 +19,5 @@ dimension \eqn{q x q}.
 Constructs a first order autoregression [AR(1)] covariance matrix.
 }
 \references{
-\insertRef{MRCE}{tsmvrExtras}
+\insertRef{MRCE}{tsmvrextras}
 }

@@ -4,9 +4,10 @@
 \alias{make_data}
 \title{Make a synthetic dataset}
 \usage{
-make_data(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1,
-  rho_x = 0.6, type = "AR1", rho_err = 0.7, h = 0.9, a = 1,
-  b = 1, n_edge = 1, min_ev = 0.18, reps = 1, seed = NULL)
+make_data(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma,
+  rho_x = 0.6, type = "AR1", rho_err = 0.7, h = 0.9, power = 1,
+  zero_appeal = 1, n_edge = 1, min_ev = 0.18, reps = 1,
+  seed = NULL)
 }
 \arguments{
 \item{n}{number of observations (positive integer)}
@@ -29,6 +30,10 @@ make_data(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1,
 
 \item{h}{Hurst parameter for FGN covariance matrix (0 < \code{h} < 1)}
 
+\item{power}{scaling power for SFN covariance matrix (positive numeric)}
+
+\item{zero_appeal}{Barabasi algorithm baseline attractiveness for SFN covariance matrix (positive numeric)}
+
 \item{n_edge}{Barabasi algorithm number of edges per step for SFN covariance matrix (positive integer)}
 
 \item{min_ev}{minimum eigenvalue of SFN covariance matrix (\code{min_ev} > 0) (ensures matrix is PSD) )}
@@ -36,10 +41,6 @@ make_data(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1,
 \item{reps}{number of randomly drawn datasets to return (positive integer)}
 
 \item{seed}{random seed for reproducibility (positive integer)}
-
-\item{power}{scaling power for SFN covariance matrix (positive numeric)}
-
-\item{zero_appeal}{Barabasi algorithm baseline attractiveness for SFN covariance matrix (positive numeric)}
 }
 \value{
 Returns a list of length \code{reps}. Each entry is itself
@@ -48,8 +49,8 @@ matrix \code{B}, a design matrix \code{X}, and a response matrix
 \code{Y}. \code{B} has an expected sparsity of \code{b1} \code{x}
 \code{b2}.
 
-See also \code{\link{tsmvrextras.regressor_matrix}},
-\code{\link{tsmvrextras.covariance_matrix}}, and
+See also \code{\link{regressor_matrix}},
+\code{\link{covariance_matrix}}, and
 \code{\link[tsmvr]{tsmvr_solve}}.
 }
 \description{
@@ -61,5 +62,5 @@ matrix, \eqn{Y} is the response matrix, and \eqn{E} is the matrix
 error term.
 }
 \references{
-\insertRef{MRCE}{tsmvrExtras}
+\insertRef{MRCE}{tsmvrextras}
 }

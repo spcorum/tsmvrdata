@@ -27,7 +27,11 @@ Imports:
     pROC,
     Rdpack,
     pracma,
-    stats
+    stats,
+    expm,
+    reshape
+RdMacros: 
+    Rdpack
 Remotes: 
     spcorum/tsmvr
 Suggests: 

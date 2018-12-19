@@ -7,6 +7,7 @@
 #' @param q number of regression responses (positive integer)
 #' @param b1 a Bernoulli parameter controlling the sparsity of the regressor matrix (0 <= \code{s1} <= 1)
 #' @param b2 a second Bernoulli parameter controlling the sparsity of the regressor matrix (0 <= \code{s2} <= 1)
+#' @param seed sets seed for reproducibility (positive integer)
 #'
 #' @return Returns a random sparse regressor matrix of dimension
 #' \code{p} x \code{q} with expected sparsity \code{b1} \eqn{x} \code{b2}.
@@ -16,16 +17,17 @@
 #' and each predictor is expected to be relevant for \code{(s1 q)} of
 #' the response variables.
 #'
-#' See also \code{\link{tsmvrExtras.rbern}}.
+#' See also \code{\link{{rbern}}.
 #'
-#' @references
-#' \insertRef{MRCE}{tsmvrExtras}
+#' @references \insertRef{MRCE}{tsmvrextras}
 #'
 #' @export
-regressor_matrix <- function(p, q, b1 = sqrt(0.1), b2 = sqrt(0.1)) {
-  W <- matrix(rnorm(p * q), nrow = p, ncol = q)
-  K <- matrix(tsmvr.rbern(p * q, b1), nrow = p, ncol = q)
-  Q <- matrix(0, nrow = p, ncol = q)
-  for (l in 1:p) Q[l, ] <- rep(tsmvr.rbern(1, b2), q)
+regressor_matrix = function(p, q, b1 = sqrt(0.1), b2 = sqrt(0.1),
+                             seed = NULL) {
+  set.seed(seed)
+  W = matrix(stats::rnorm(p * q), nrow = p, ncol = q)
+  K = matrix(rbern(p * q, b1), nrow = p, ncol = q)
+  Q = matrix(0, nrow = p, ncol = q)
+  for (l in 1:p) Q[l, ] = rep(rbern(1, b2), q)
   return(W * K * Q)
 }

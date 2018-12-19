@@ -33,5 +33,5 @@ See also \code{\link[igraph]{get.adjacency}},
 \references{
 \insertRef{chen2016high}{tsmvr}
 
-\insertRef{barabasi}{tsmvrExtras}
+\insertRef{barabasi}{tsmvrextras}
 }

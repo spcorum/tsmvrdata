@@ -16,7 +16,7 @@ covar_fgn <- function(q, h = 0.9) {
   X <- diag(q)
   for (i in 1:q - 1) {
     for (j in ifelse(i < q, i + 1, i):q) {
-      X[i, j] <- Sigma(i, j, H)
+      X[i, j] <- Sigma(i, j, h)
       X[j, i] <- X[i, j]
     }
   }

@@ -32,6 +32,5 @@ Calculates evaluation metrics between estimated and ground truth
 sparse models (i.e., matrices)
 }
 \note{
-See also \code{\link{squared_error}} and
-\code{\link{model_error}}.
+Also see \code{\link{model_error}}.
 }

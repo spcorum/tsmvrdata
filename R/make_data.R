@@ -30,16 +30,16 @@
 #' \code{Y}. \code{B} has an expected sparsity of \code{b1} \code{x}
 #' \code{b2}.
 #'
-#' See also \code{\link{tsmvrextras.regressor_matrix}},
-#' \code{\link{tsmvrextras.covariance_matrix}}, and
+#' See also \code{\link{regressor_matrix}},
+#' \code{\link{covariance_matrix}}, and
 #' \code{\link[tsmvr]{tsmvr_solve}}.
 #'
 #' @references
-#' \insertRef{MRCE}{tsmvrExtras}
+#' \insertRef{MRCE}{tsmvrextras}
 #'
 #' @export
 make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma, rho_x = 0.6,
-                      type = "AR1", rho_err = 0.7, h = 0.9, a = 1, b = 1, n_edge = 1,
+                      type = "AR1", rho_err = 0.7, h = 0.9, power = 1, zero_appeal = 1, n_edge = 1,
                       min_ev = 0.18, reps = 1, seed = NULL) {
   stopifnot(reps >= 1, type == "AR1" || type == "FGN" || type == "SFN")
   set.seed(seed)
@@ -51,12 +51,11 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma, rho_x = 0.
 
   # Calculate the auxillary and error covariance matrices --------------
   Sigma_x <- covariance_matrix(
-    p,
-    rho_x = rho_x, type = "AR1", reps = reps
+    p, type = "AR1", rho = rho_x
   )
   Sigma_err <- covariance_matrix(
-    q,
-    sigma = sigma, rho_err = rho_err, type = type, reps = reps
+    q, type = type, rho = rho_err, h = h, power = power,
+    zero_appeal = zero_appeal, n_edge = n_edge, min_ev = min_ev
   )
 
   # Calculate a random (list of draws of the) dataset -----------------

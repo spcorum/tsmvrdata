@@ -11,6 +11,9 @@ plot_error_curve(hat, star, up = 1, low = -5, left = 0,
 \item{hat}{numeric vector representing the errors between iterates
 and the final iterate}
 
+\item{star}{numeric vector representing the errors between iterates
+and the ground trush}
+
 \item{up}{upper limit of vertical axis}
 
 \item{low}{lower limit of vertical axis}
@@ -20,9 +23,6 @@ and the final iterate}
 \item{right}{right limit of horizontal axis}
 
 \item{auto}{calculate limit automatically (default FALSE; if TRUE axes limits are ignored)}
-
-\item{true}{numeric vector representing the errors between iterates
-and the ground trush}
 }
 \value{
 A ggplot object.

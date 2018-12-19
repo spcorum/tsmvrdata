@@ -4,19 +4,17 @@
 \alias{covariance_matrix}
 \title{Construct covariance and precision matrices}
 \usage{
-covariance_matrix(q, rho_x = 0.6, type = "AR1", rho_err = 0.7,
-  H = 0.9, power = 1, zero_appeal = 1, n_edge = 1, min_ev = 0.18)
+covariance_matrix(q, type = "AR1", rho = 0.7, h = 0.9, power = 1,
+  zero_appeal = 1, n_edge = 1, min_ev = 0.18)
 }
 \arguments{
 \item{q}{dimension of covariance matrix (positive integer)}
 
-\item{rho_x}{autoregression parameter for modeling the design matrix covariance (0 < \code{rho_x} < 1)}
-
 \item{type}{type of covariance matrix (string: 'AR1', 'FGN', or 'SFN')}
 
-\item{rho_err}{autoregression paramter for AR(1) covariance matrix (0 < \code{rho_err} < 1)}
+\item{rho}{autoregression paramter for AR(1) covariance matrix (0 < \code{rho_err} < 1)}
 
-\item{H}{Hurst parameter for FGN covariance matrix (0 < \code{H} < 1)}
+\item{h}{Hurst parameter for FGN covariance matrix (0 < \code{H} < 1)}
 
 \item{power}{scaling power for SFN covariance matrix (positive numeric)}
 
@@ -36,7 +34,7 @@ of the following types: first-order autoregressive [AR(1)],
 fractional gaussian noise [FGN], or scale free network [SFN].
 }
 \references{
-\insertRef{MRCE}{tsmvrExtras}
+\insertRef{MRCE}{tsmvrextras}
 
 \insertRef{chen2016high}{tsmvr}
 }

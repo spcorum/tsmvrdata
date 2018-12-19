@@ -4,7 +4,7 @@
 \alias{regressor_matrix}
 \title{Sparse regressor matrix}
 \usage{
-regressor_matrix(p, q, b1 = sqrt(0.1), b2 = sqrt(0.1))
+regressor_matrix(p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), seed = NULL)
 }
 \arguments{
 \item{p}{number of regression features (positive integer)}
@@ -14,6 +14,8 @@ regressor_matrix(p, q, b1 = sqrt(0.1), b2 = sqrt(0.1))
 \item{b1}{a Bernoulli parameter controlling the sparsity of the regressor matrix (0 <= \code{s1} <= 1)}
 
 \item{b2}{a second Bernoulli parameter controlling the sparsity of the regressor matrix (0 <= \code{s2} <= 1)}
+
+\item{seed}{sets seed for reproducibility (positive integer)}
 }
 \value{
 Returns a random sparse regressor matrix of dimension
@@ -23,14 +25,6 @@ Returns a random sparse regressor matrix of dimension
 Creates a random realization of a sparse multivariate regressor
 matrix.
 }
-\note{
-The regressor matrix is constructed such that \code{(1-s2)p}
-predictors are expected to be irrelevant for \code{q} responses,
-and each predictor is expected to be relevant for \code{(s1 q)} of
-the response variables.
-
-See also \code{\link{tsmvrExtras.rbern}}.
-}
 \references{
-\insertRef{MRCE}{tsmvrExtras}
+\insertRef{MRCE}{tsmvrextras}
 }

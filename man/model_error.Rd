@@ -4,32 +4,29 @@
 \alias{model_error}
 \title{Model error}
 \usage{
-model_error(X1, X2, Sigma = NULL)
+model_error(U, W, Sigma = NULL)
 }
 \arguments{
-\item{X1}{matrix (m-by-n)}
+\item{U}{matrix (m-by-n)}
 
-\item{X2}{matrix (m-by-n)}
+\item{W}{matrix (m-by-n)}
 
 \item{Sigma}{positive definite covariance matrix (m-by-m)}
 }
 \value{
-The model error between \code{X1} and \code{X2} given
+The model error between \code{U} and \code{W} given
 \code{Sigma}.
 }
 \description{
 Given a positive definite covariance matrix \eqn{\Sigma}, this
 function calculates the model error between two matrices \eqn{X1}
 and \eqn{X2} according to the formula
-\deqn{Trace [ (X1-X2)' \Sigma' \Sigma (X1-X2) ]/(mn),}
-where \eqn{m}, \eqn{n} are the dimensions of \eqn{X1} (\eqn{X2}).
+\deqn{Trace [ (U-W)' \Sigma' \Sigma (U-W) ]/(mn),}
+where \eqn{m}, \eqn{n} are the dimensions of \eqn{U} (\eqn{W}).
 If no covariance matrix is specified, the function calculates the
 model error using the identity covariance matrix, which is
 equivalent the normalized squared matrix error).
 }
-\note{
-See also \code{\link{squared_error}}.
-}
 \references{
-\insertRef{MRCE}{tsmvrExtras}
+\insertRef{MRCE}{tsmvrextras}
 }

@@ -6,7 +6,7 @@
 #'
 #' @param hat numeric vector representing the errors between iterates
 #' and the final iterate
-#' @param true numeric vector representing the errors between iterates
+#' @param star numeric vector representing the errors between iterates
 #' and the ground trush
 #' @param up upper limit of vertical axis
 #' @param low lower limit of vertical axis
@@ -37,7 +37,7 @@ plot_error_curve <- function(hat, star, up = 1, low = -5, left = 0, right = 100,
     # and then plot some extra to the right of that (5 extra
     # iterations if x < 25 or 20% more if x > 25).
     tol <- 1e-3
-    r.logical <- which((gradient(star) < tol) == T)
+    r.logical <- which((pracma::gradient(star) < tol) == T)
     if (length(r.logical) == 0) {
       right <- length(star)
     } else {
@@ -76,17 +76,17 @@ plot_error_curve <- function(hat, star, up = 1, low = -5, left = 0, right = 100,
   df <- as.data.frame(star)
   df$hat <- hat
   names(df) <- c("Truth", "Estimate")
-  df <- melt(df)
+  df <- reshape::melt(df)
   df$iteration <- 1:k
 
   # Plot the error curves.
-  plt <- ggplot(df, aes(x = iteration, y = value, colour = variable)) +
-    geom_line(size = 1) +
-    xlab("t") +
-    xlim(left, right) +
-    ylab("log2 Frobenius norm") +
-    ylim(low, up) +
-    scale_color_manual(
+  plt <- ggplot2::ggplot(df, ggplot2::aes(x = iteration, y = value, colour = variable)) +
+      ggplot2::geom_line(size = 1) +
+      ggplot2::xlab("t") +
+      ggplot2::xlim(left, right) +
+      ggplot2::ylab("log2 Frobenius norm") +
+      ggplot2::ylim(low, up) +
+      ggplot2::scale_color_manual(
       labels =
         c(
           expression(group("|", B^t - B^"*", "|")[F]),
@@ -94,16 +94,16 @@ plot_error_curve <- function(hat, star, up = 1, low = -5, left = 0, right = 100,
         ),
       values = c("blue", "red")
     ) +
-    theme(
-      legend.title = element_blank(),
+      ggplot2::theme(
+      legend.title = ggplot2::element_blank(),
       legend.position = c(0.22, 0.25),
-      legend.background = element_rect(
+      legend.background = ggplot2::element_rect(
         color = "black",
         linetype = "solid", size = 0.3
       ),
-      axis.text = element_text(size = 20),
-      axis.title = element_text(size = 24, face = "bold"),
-      legend.text = element_text(size = 20, face = "bold")
+      axis.text = ggplot2::element_text(size = 20),
+      axis.title = ggplot2::element_text(size = 24, face = "bold"),
+      legend.text = ggplot2::element_text(size = 20, face = "bold")
     )
 
   # Return the plot handle.
