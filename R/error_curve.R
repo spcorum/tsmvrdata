@@ -22,7 +22,7 @@
 error_curve <- function(Hat.list, Star = NULL) {
   K <- length(Hat.list)
   error_curve <- rep(0, K)
-  if (is.null(Star)) Star <- Hat.list[[K]]
-  for (k in 1:K) error_curve[k] <- norm(Hat.list[[k]] - Star, "F")
+  if (is.null(Star)) Star = Hat.list[[K]]
+  for (k in 1:K) error_curve[k] = norm(Hat.list[[k]] - Star, "F")
   return(error_curve)
 }

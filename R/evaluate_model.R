@@ -42,6 +42,6 @@ evaluate_model <- function(Star, Hat, Sigma = NULL) {
 
   return(list(
     squared_error = se, model_error = me, tp = tp, tn = tn, fp = fp,
-    fn = fn, tpr = tpr, tnr = tnr, acc = acc, auc = auc, f1 = F1
+    fn = fn, tpr = tpr, tnr = tnr, acc = acc, auc = AUC, f1 = f1
   ))
 }

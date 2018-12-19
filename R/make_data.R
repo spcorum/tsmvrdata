@@ -15,7 +15,6 @@
 #' @param sigma scale of error term (positive numeric)
 #' @param rho_x autoregression parameter for design matrix covariance matrix (0 < \code{rho} < 1)
 #' @param type type of covariance matrix (string: 'AR1', 'FGN', or 'SFN')
-#' @param vary_x whether or not to vary the design matrix (bool)
 #' @param rho_err autoregression parameter for AR(1) covariance matrix (0 < \code{rho} < 1)
 #' @param h Hurst parameter for FGN covariance matrix (0 < \code{h} < 1)
 #' @param power scaling power for SFN covariance matrix (positive numeric)
@@ -40,8 +39,9 @@
 #'
 #' @export
 make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma, rho_x = 0.6,
-                      type = "AR1", vary_x = T, rho_err = 0.7, h = 0.9, a = 1, b = 1, n_edge = 1,
+                      type = "AR1", rho_err = 0.7, h = 0.9, a = 1, b = 1, n_edge = 1,
                       min_ev = 0.18, reps = 1, seed = NULL) {
+
   stopifnot(reps >= 1, type == "AR1" || type == "FGN" || type == "SFN")
   set.seed(seed)
 
@@ -52,37 +52,30 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma, rho_x = 0.
 
   # Calculate the auxillary and error covariance matrices --------------
   Sigma_x <- covariance_matrix(
-    p, rho_x = rho_x, type = "AR1", reps = reps
+    p,
+    rho_x = rho_x, type = "AR1", reps = reps
   )
   Sigma_err <- covariance_matrix(
     q,
     sigma = sigma, rho_err = rho_err, type = type, reps = reps
   )
 
-  # Calculate a random (list of random draws of the) dataset -----------
-  X.list <- mvrnorm(n, rep(0, p), Sigma_x$covariance, reps)
+  # Calculate a random (list of draws of the) dataset -----------------
+  X <- mvrnorm(n, rep(0, p), Sigma_x$covariance)
+  B <- regressor_matrix(p, q, b1, b2)
+  XB = X %*% B
   E.list <- mvrnorm(n, rep(0, q), Sigma_err$covariance, reps)
-  # data.list <- as.list(rep(0, reps))
-  data.list <- as.list(rep(0, reps), regressor_matrix(p, q, b1, b2),
-                       how = 'replace')
-
+  data.list <- as.list(rep(0, reps))
   for (i in 1:reps) {
-    # B <- regressor_matrix(p, q, b1, b2)
-    if (vary_x) {
-      Y <- X.list[[i]] %*% B + sigma^2 * E.list[[i]]
-      data.list[[i]]$X <- X.list[[i]]
-    }
-    else {
-      Y <- X.list[[1]] %*% B + sigma^2 * E.list[[i]]
-      data.list[[i]]$X <- X.list[[1]]
-    }
-    data.list[[i]]$Y <- Y
-    data.list[[i]]$Y <- Y
+    data.list[[1]]$X <- X
     data.list[[i]]$B_star <- B
-    data.list[[i]]$Omega_star <- Sigma_err$precision
+    data.list[[i]]$Y <- XB + sigma^2 * E.list[[i]]
+    data.list[[i]]$E <- E.list[[i]]
     data.list[[i]]$Sigma_err <- Sigma_err$covariance
+    data.list[[i]]$Omega_star <- Sigma_err$precision
     data.list[[i]]$Sigma_x <- Sigma_x
   }
 
   return(data.list)
+
 }

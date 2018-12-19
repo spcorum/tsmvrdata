@@ -15,13 +15,13 @@ mvrnorm <- function(n, mu = 0, Sigma, reps = 1) {
   Sigma.dim <- dim(Sigma)
   stopifnot(isSymmetric.matrix(Sigma), p == dim(Sigma)[1], reps >= 1)
 
-  # Calculate the eigen-decomposition of Sigma and Sigma^(1/2),
+  # Calculate the eigen-decomposition of Sigma and Sigma^(1/2) --------
   eigen.object <- eigen(Sigma, symmetric = T)
   Sigma.sqrt <- t(eigen.object$vectors) %*% diag(eigen.object$values^0.5) %*%
     eigen.object$vectors
 
   # Generate an n-by-p random standard normal matrix(es) and
-  # n-by-p matrix that is row-wise iid N_p(mu,Sigma)
+  # n-by-p matrix that is row-wise iid N_p(mu,Sigma) ------------------
   N.list <- as.list(rep(0, reps))
   for (i in 1:reps) {
     Z <- matrix(rnorm(n * p), nrow = n, ncol = p)
