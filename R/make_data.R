@@ -51,7 +51,7 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1, rho_x 
   # --------------------------------------------------------------------
 
   # Calculate the auxillary covariance matrix --------------------------
-  Sigma_x = covmat_ar1(p, rho_x)
+  Sigma_x <- covmat_ar1(p, rho_x)
 
   # Calculate list of covariance (precision) matrices ------------------
 
@@ -65,8 +65,9 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1, rho_x 
   # if (type=='AR1'||type=='FGN')
   #     Omega = zapsmall(chol2inv(chol(Sigma.E)))
 
-  Sigma_list <- covariance_matrix(q, sigma, rho_x, type, rho_err, h,
-                                  power, n_edge, min_ev, reps, min_ev
+  Sigma_list <- covariance_matrix(
+    q, sigma, rho_x, type, rho_err, h,
+    power, n_edge, min_ev, reps, min_ev
   )
 
   # if (reps==1) {  # Single simulations.
@@ -84,12 +85,12 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1, rho_x 
   for (i in 1:reps) {
     B <- regressor_matrix(p, q, b1, b2)
     if (vary_x) {
-        Y <- X.list[[i]] %*% B + sigma^2 * E.list[[i]]
-        data.list[[i]]$X <- X.list[[i]]
+      Y <- X.list[[i]] %*% B + sigma^2 * E.list[[i]]
+      data.list[[i]]$X <- X.list[[i]]
     }
     else {
-        Y <- X.list[[1]] %*% B + sigma^2 * E.list[[i]]
-        data.list[[1]]$X <- X.list[[i]]
+      Y <- X.list[[1]] %*% B + sigma^2 * E.list[[i]]
+      data.list[[1]]$X <- X.list[[i]]
     }
     data.list[[i]]$Y <- Y
     data.list[[i]]$B_star <- B

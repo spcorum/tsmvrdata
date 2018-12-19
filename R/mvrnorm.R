@@ -20,22 +20,13 @@ mvrnorm <- function(n, mu = 0, Sigma, reps = 1) {
   Sigma.sqrt <- t(eigen.object$vectors) %*% diag(eigen.object$values^0.5) %*%
     eigen.object$vectors
 
-  # Returns a matrix or list of matrices that is/are row-wose iid
-  # N_p(mu,Sigma) of size n x p.
-  if (reps == 1) {
-    # Generate an n-by-p random standard normal matrix and
-    # n-by-p matrix that is row-wise iid N_p(mu,Sigma)
-    Z <- matrix(rnorm(n * p), nrow = n, ncol = p)
-    N <- rep(1, n) %*% t(mu) + Z %*% Sigma.sqrt
-    return(N)
-  } else {
-    # Do the above for reps repeats and return a list of the
-    # results.
-    N.list <- as.list(rep(0, reps))
-    for (i in 1:reps) {
+  # Generate an n-by-p random standard normal matrix(es) and
+  # n-by-p matrix that is row-wise iid N_p(mu,Sigma)
+  N.list <- as.list(rep(0, reps))
+  for (i in 1:reps) {
       Z <- matrix(rnorm(n * p), nrow = n, ncol = p)
       N.list[[i]] <- rep(1, n) %*% t(mu) + Z %*% Sigma.sqrt
-    }
-    return(N.list)
   }
+  if (reps == 1) return(N.list[[1]])
+  else return(N.list)
 }
