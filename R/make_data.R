@@ -50,22 +50,21 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma, rho_x = 0.
   #                       Y = X*B + E
   # --------------------------------------------------------------------
 
-  # Calculate the auxillary covariance matrix --------------------------
-  Sigma_x <- covmat_ar1(p, rho_x)
-
+  # Calculate the auxillary and error covariance matrices --------------
   Sigma_x <- covariance_matrix(
-      p, sigma=sigma, rho_x=rho_x, type='AR1', reps=reps
+    p,
+    sigma = sigma, rho_x = rho_x, type = "AR1", reps = reps
   )
-
-  # Calculate list of covariance (precision) matrices ------------------
   Sigma_err <- covariance_matrix(
-      q, sigma=sigma, rho_err=rho_err, type='AR1', reps=reps
+    q,
+    sigma = sigma, rho_err = rho_err, type = "AR1", reps = reps
   )
 
   # Calculate a random (list of random draws of the) dataset -----------
   X.list <- mvrnorm(n, rep(0, p), Sigma_x, reps)
   E.list <- mvrnorm(n, rep(0, q), Sigma_err$covariance, reps)
   data.list <- as.list(rep(0, reps))
+
   for (i in 1:reps) {
     B <- regressor_matrix(p, q, b1, b2)
     if (vary_x) {
@@ -78,11 +77,11 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma, rho_x = 0.
     }
     data.list[[i]]$Y <- Y
     data.list[[i]]$B_star <- B
-    data.list[[i]]$Omega_star <- sigma.list$precision
-    data.list[[i]]$Sigma_err <- sigma.list$covariance
-    data.list[[i]]$Sigma_x <- Sigma.X
+    data.list[[i]]$Omega_star <- Sigma_err$precision
+    data.list[[i]]$Sigma_err <- Sigma_err$covariance
+    data.list[[i]]$Sigma_x <- Sigma_x
   }
+
   return(data.list)
 
-  #   }
 }
