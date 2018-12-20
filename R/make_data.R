@@ -42,14 +42,13 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma,
                       rho_x = 0.6, type = "AR1", rho_err = 0.7, h = 0.9,
                       power = 1, n_edge = 1, zero_appeal = 1,
                       min_ev = 0.18, reps = 1, seed = NULL) {
-
   stopifnot(
     n %% 1 == 0, n > 0, p %% 1 == 0, p > 0, q %% 1 == 0, q > 0,
     rho_x >= 0, rho_x < 1, type == "AR1" || type == "FGN" ||
-        type == "SFN",
+      type == "SFN",
     rho_err >= 0, rho_err < 1, h >= 0, h < 1, power > 0, zero_appeal > 0,
     n_edge > 0, min_ev > 0, reps %% 1 == 0, reps > 0
-    )
+  )
 
   set.seed(seed)
 
@@ -60,10 +59,12 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma,
 
   # Calculate the auxillary and error covariance matrices --------------
   Sigma_x <- covariance_matrix(
-    p, type = "AR1", rho = rho_x
+    p,
+    type = "AR1", rho = rho_x
   )
   Sigma_err <- covariance_matrix(
-    q, type = type, rho = rho_err, h = h, power = power,
+    q,
+    type = type, rho = rho_err, h = h, power = power,
     zero_appeal = zero_appeal, n_edge = n_edge, min_ev = min_ev
   )
 

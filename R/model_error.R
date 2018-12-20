@@ -23,15 +23,16 @@
 #'
 #' @export
 model_error <- function(U, W, Sigma = NULL) {
-   stopifnot(is.matrix(U), is.matrix(W),
-              is.matrix(Sigma) || is.null(Sigma),
-              all(dim(U) == dim(W)), dim(W)[2] == dim(Sigma)[1],
-              is.null(Sigma) ||
-              matrixcalc::is.positive.definite(Sigma)
-    )
+  stopifnot(
+    is.matrix(U), is.matrix(W),
+    is.matrix(Sigma) || is.null(Sigma),
+    all(dim(U) == dim(W)), dim(W)[2] == dim(Sigma)[1],
+    is.null(Sigma) ||
+      matrixcalc::is.positive.definite(Sigma)
+  )
 
-    A = U - W
-    if (is.null(Sigma)) Sigma = diag(dim(A)[2])
-    return( matrixcalc::matrix.trace(A %*% Sigma %*% t(A)) /
-                dim(A)[1] / dim(A)[2] )
+  A <- U - W
+  if (is.null(Sigma)) Sigma <- diag(dim(A)[2])
+  return(matrixcalc::matrix.trace(A %*% Sigma %*% t(A)) /
+    dim(A)[1] / dim(A)[2])
 }
