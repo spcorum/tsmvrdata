@@ -3,7 +3,7 @@
 tsmvrextras
 ===========
 
-**tsmvrextras** is the companion R package to the [tsmvr](https://github.com/spcorum/tsmvr) (Trusly Sparse Multivariate Regression) package. **tsmvrextras** adds functionality by allowing the user to create synthetic datasets or load real datasets that are readily inputted into the *tsmvr* algorithm. It also contains functions to visualize and evaluate the quality of the solutions found by *tsmvr*.
+**tsmvrextras** is the companion R package to the [tsmvr](https://github.com/spcorum/tsmvr) (Truly Sparse Multivariate Regression) package. **tsmvrextras** adds functionality by allowing the user to create synthetic datasets or load real datasets that are readily inputted into the *tsmvr* algorithm. It also contains functions to visualize and evaluate the quality of the solutions found by *tsmvr*.
 
 Installation
 ------------

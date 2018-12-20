@@ -23,7 +23,15 @@
 #'
 #' @export
 model_error <- function(U, W, Sigma = NULL) {
-  stopifnot(all(dim(U) == dim(W)))
-  if (is.null(Sigma)) return(norm(U - W, type = "f") / dim(U)[1] / dim(W)[2])
-  return(norm(expm::sqrtm(Sigma) %*% (U - W), type = "f") / dim(U)[1] / dim(W)[2])
+   stopifnot(is.matrix(U), is.matrix(W),
+              is.matrix(Sigma) || is.null(Sigma),
+              all(dim(U) == dim(W)), dim(W)[2] == dim(Sigma)[1],
+              is.null(Sigma) ||
+              matrixcalc::is.positive.definite(Sigma)
+    )
+
+    A = U - W
+    if (is.null(Sigma)) Sigma = diag(dim(A)[2])
+    return( matrixcalc::matrix.trace(A %*% Sigma %*% t(A)) /
+                dim(A)[1] / dim(A)[2] )
 }

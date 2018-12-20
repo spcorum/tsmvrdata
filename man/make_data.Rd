@@ -6,7 +6,7 @@
 \usage{
 make_data(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma,
   rho_x = 0.6, type = "AR1", rho_err = 0.7, h = 0.9, power = 1,
-  zero_appeal = 1, n_edge = 1, min_ev = 0.18, reps = 1,
+  n_edge = 1, zero_appeal = 1, min_ev = 0.18, reps = 1,
   seed = NULL)
 }
 \arguments{
@@ -32,15 +32,15 @@ make_data(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma,
 
 \item{power}{scaling power for SFN covariance matrix (positive numeric)}
 
-\item{zero_appeal}{Barabasi algorithm baseline attractiveness for SFN covariance matrix (positive numeric)}
-
 \item{n_edge}{Barabasi algorithm number of edges per step for SFN covariance matrix (positive integer)}
+
+\item{zero_appeal}{Barabasi algorithm baseline attractiveness for SFN covariance matrix (positive numeric)}
 
 \item{min_ev}{minimum eigenvalue of SFN covariance matrix (\code{min_ev} > 0) (ensures matrix is PSD) )}
 
 \item{reps}{number of randomly drawn datasets to return (positive integer)}
 
-\item{seed}{random seed for reproducibility (positive integer)}
+\item{seed}{seed for pseudorandom number generator}
 }
 \value{
 Returns a list of length \code{reps}. Each entry is itself

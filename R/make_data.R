@@ -18,11 +18,11 @@
 #' @param rho_err autoregression parameter for AR(1) covariance matrix (0 < \code{rho} < 1)
 #' @param h Hurst parameter for FGN covariance matrix (0 < \code{h} < 1)
 #' @param power scaling power for SFN covariance matrix (positive numeric)
-#' @param zero_appeal Barabasi algorithm baseline attractiveness for SFN covariance matrix (positive numeric)
 #' @param n_edge Barabasi algorithm number of edges per step for SFN covariance matrix (positive integer)
+#' @param zero_appeal Barabasi algorithm baseline attractiveness for SFN covariance matrix (positive numeric)
 #' @param min_ev minimum eigenvalue of SFN covariance matrix (\code{min_ev} > 0) (ensures matrix is PSD) )
 #' @param reps number of randomly drawn datasets to return (positive integer)
-#' @param seed random seed for reproducibility (positive integer)
+#' @param seed seed for pseudorandom number generator
 #'
 #' @return Returns a list of length \code{reps}. Each entry is itself
 #' a comprising a synthetic sparse multivariate dataset: a regressor
@@ -38,25 +38,32 @@
 #' \insertRef{MRCE}{tsmvrextras}
 #'
 #' @export
-make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma, rho_x = 0.6,
-                      type = "AR1", rho_err = 0.7, h = 0.9, power = 1, zero_appeal = 1, n_edge = 1,
+make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma,
+                      rho_x = 0.6, type = "AR1", rho_err = 0.7, h = 0.9,
+                      power = 1, n_edge = 1, zero_appeal = 1,
                       min_ev = 0.18, reps = 1, seed = NULL) {
-  stopifnot(reps >= 1, type == "AR1" || type == "FGN" || type == "SFN")
+
+  stopifnot(
+    n %% 1 == 0, n > 0, p %% 1 == 0, p > 0, q %% 1 == 0, q > 0,
+    rho_x >= 0, rho_x < 1, type == "AR1" || type == "FGN" ||
+        type == "SFN",
+    rho_err >= 0, rho_err < 1, h >= 0, h < 1, power > 0, zero_appeal > 0,
+    n_edge > 0, min_ev > 0, reps %% 1 == 0, reps > 0
+    )
+
   set.seed(seed)
 
   # --------------------------------------------------------------------
-  # The code creates a rep datasets according to the multivariate model:
-  #                       Y = X*B + E
+  # The code creates rep datasets according to the multivariate model:
+  #                            Y = X*B + E
   # --------------------------------------------------------------------
 
   # Calculate the auxillary and error covariance matrices --------------
   Sigma_x <- covariance_matrix(
-    p,
-    type = "AR1", rho = rho_x
+    p, type = "AR1", rho = rho_x
   )
   Sigma_err <- covariance_matrix(
-    q,
-    type = type, rho = rho_err, h = h, power = power,
+    q, type = type, rho = rho_err, h = h, power = power,
     zero_appeal = zero_appeal, n_edge = n_edge, min_ev = min_ev
   )
 
@@ -68,11 +75,11 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma, rho_x = 0.
   data.list <- as.list(rep(0, reps))
   for (i in 1:reps) {
     data.list[[1]]$X <- X
-    data.list[[i]]$B_star <- B
+    data.list[[i]]$B <- B
     data.list[[i]]$Y <- XB + sigma^2 * E.list[[i]]
     data.list[[i]]$E <- E.list[[i]]
     data.list[[i]]$Sigma_err <- Sigma_err$covariance
-    data.list[[i]]$Omega_star <- Sigma_err$precision
+    data.list[[i]]$Omega <- Sigma_err$precision
     data.list[[i]]$Sigma_x <- Sigma_x
   }
 

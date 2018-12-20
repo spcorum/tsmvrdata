@@ -174,7 +174,6 @@ usethis::use_tidy_style()
 
 usethis::use_r('regressor_matrix')
 roxygen2::roxygenize()
-devtools::spell_check()
 # Restart R: Cmd+Shift+F10
 # Build and reload: Cmd+Shift+B
 usethis::use_test('regressor_matrix')
@@ -186,9 +185,35 @@ roxygen2::roxygenize()
 # Commit at command line
 usethis::use_tidy_style()
 
-
+####
 usethis::use_r('make_data')
+# Install and restart: Cmd+Shift+B
+usethis::use_test('make_data')
+devtools::test_file('R/make_data.R')
+devtools::test()
+devtools::check(args = "--as-cran")
+# Documument
+roxygen2::roxygenize()
+# Commit
+devtools::check(args = "--as-cran")
+usethis::use_tidy_style()
+
+
+
 usethis::use_r('model_error')
+# Install and restart: Cmd+Shift+B
+usethis::use_test('model_error')
+devtools::test_file('R/model_error.R')
+devtools::test()
+devtools::check(args = "--as-cran")
+# Documument
+roxygen2::roxygenize()
+# Commit
+devtools::check(args = "--as-cran")
+usethis::use_tidy_style()
+
+
+
 usethis::use_r('evaluate_model')
 usethis::use_r('error_curve')
 usethis::use_r('plot_error_curve')
@@ -201,6 +226,7 @@ usethis::use_r('plot_error_curve')
 # Document Cmd+Shift+D
 roxygen2::roxygenize()
 # Check: Cmd+Shift+E
+devtools::check(args = "--as-cran")
 # Optional: to update development version ..
 usethis::use_dev_version()
 # Add, commit, and push in command line
@@ -208,10 +234,13 @@ usethis::use_dev_version()
 
 # Development version release cycle -----------------------------------
 
+roxygen2::roxygenize()
+devtools::spell_check()
 # Restart: Cmd+Shift+F10
 # Document Cmd+Shift+D
-roxygen2::roxygenize()
+
 # Check: Cmd+Shift+E
+devtools::check(args = "--as-cran")
 # Update development version
 usethis::use_version('dev')
 # Knit README.Rmd
