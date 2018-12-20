@@ -5,7 +5,7 @@
 \title{Construct covariance and precision matrices}
 \usage{
 covariance_matrix(q, type = "AR1", rho = 0.7, h = 0.9, power = 1,
-  zero_appeal = 1, n_edge = 1, min_ev = 0.18)
+  n_edge = 1, zero_appeal = 1, min_ev = 0.18)
 }
 \arguments{
 \item{q}{dimension of covariance matrix (positive integer)}
@@ -18,9 +18,9 @@ covariance_matrix(q, type = "AR1", rho = 0.7, h = 0.9, power = 1,
 
 \item{power}{scaling power for SFN covariance matrix (positive numeric)}
 
-\item{zero_appeal}{Barabasi algorithm baseline attractiveness for SFN covariance matrix (positive numeric)}
-
 \item{n_edge}{Barabasi algorithm number of edges per step for SFN covariance matrix (positive integer)}
+
+\item{zero_appeal}{Barabasi algorithm baseline attractiveness for SFN covariance matrix (positive numeric)}
 
 \item{min_ev}{minimum eigenvalue of SFN covariance matrix (\code{min_ev} > 0) (ensures matrix is PSD) )}
 }

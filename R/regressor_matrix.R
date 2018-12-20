@@ -7,7 +7,7 @@
 #' @param q number of regression responses (positive integer)
 #' @param b1 a Bernoulli parameter controlling the sparsity of the regressor matrix (0 <= \code{s1} <= 1)
 #' @param b2 a second Bernoulli parameter controlling the sparsity of the regressor matrix (0 <= \code{s2} <= 1)
-#' @param seed sets seed for reproducibility (positive integer)
+#' @param seed seed for pseudorandom number generator (optional)
 #'
 #' @return Returns a random sparse regressor matrix of dimension
 #' \code{p} x \code{q} with expected sparsity \code{b1} \eqn{x} \code{b2}.
@@ -24,6 +24,8 @@
 #' @export
 regressor_matrix <- function(p, q, b1 = sqrt(0.1), b2 = sqrt(0.1),
                              seed = NULL) {
+  stopifnot(p %% 1 == 0, p > 0, q %% 1 == 0, q > 0, b1 >= 0,
+            b1 <= 1, b2 >= 0, b2 <= 1)
   set.seed(seed)
   W <- matrix(stats::rnorm(p * q), nrow = p, ncol = q)
   K <- matrix(rbern(p * q, b1), nrow = p, ncol = q)

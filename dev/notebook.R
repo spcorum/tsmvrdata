@@ -158,7 +158,35 @@ roxygen2::roxygenize()
 usethis::use_tidy_style()
 
 usethis::use_r('covariance_matrix')
+roxygen2::roxygenize()
+devtools::spell_check()
+# Restart R: Cmd+Shift+F10
+# Build and reload: Cmd+Shift+B
+usethis::use_test('covariance_matrix')
+devtools::test_file('R/covariance_matrix.R')
+devtools::test()
+devtools::check(args = "--as-cran")
+# Document Cmd+Shift+D
+roxygen2::roxygenize()
+# Commit at command line
+usethis::use_tidy_style()
+
+
 usethis::use_r('regressor_matrix')
+roxygen2::roxygenize()
+devtools::spell_check()
+# Restart R: Cmd+Shift+F10
+# Build and reload: Cmd+Shift+B
+usethis::use_test('regressor_matrix')
+devtools::test_file('R/regressor_matrix.R')
+devtools::test()
+devtools::check(args = "--as-cran")
+# Document Cmd+Shift+D
+roxygen2::roxygenize()
+# Commit at command line
+usethis::use_tidy_style()
+
+
 usethis::use_r('make_data')
 usethis::use_r('model_error')
 usethis::use_r('evaluate_model')
