@@ -5,6 +5,19 @@ tsmvrextras
 
 **tsmvrextras** is the companion R package to the [tsmvr](https://github.com/spcorum/tsmvr) (Truly Sparse Multivariate Regression) package. **tsmvrextras** adds functionality by allowing the user to create synthetic datasets or load real datasets that are readily inputted into the *tsmvr* algorithm. It also contains functions to visualize and evaluate the quality of the solutions found by *tsmvr*.
 
+Development Status
+------------------
+
+#### Builds
+
+[![Travis build status](https://travis-ci.org/spcorum/tsmvrextras.svg?branch=master)](https://travis-ci.org/spcorum/tsmvrextras)
+
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/spcorum/tsmvrextras?branch=master&svg=true)](https://ci.appveyor.com/project/spcorum/tsmvrextras)
+
+#### Test coverage
+
+[![Coverage status](https://codecov.io/gh/spcorum/tsmvrextras/branch/master/graph/badge.svg)](https://codecov.io/github/spcorum/tsmvrextras?branch=master)
+
 Installation
 ------------
 
@@ -73,12 +86,3 @@ summary(cars)
 #>  3rd Qu.:19.0   3rd Qu.: 56.00  
 #>  Max.   :25.0   Max.   :120.00
 ```
-
-Build and test coverage reports
--------------------------------
-
-[![Travis build status](https://travis-ci.org/spcorum/tsmvrextras.svg?branch=master)](https://travis-ci.org/spcorum/tsmvrextras)
-
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/spcorum/tsmvrextras?branch=master&svg=true)](https://ci.appveyor.com/project/spcorum/tsmvrextras)
-
-[![Coverage status](https://codecov.io/gh/spcorum/tsmvrextras/branch/master/graph/badge.svg)](https://codecov.io/github/spcorum/tsmvrextras?branch=master)

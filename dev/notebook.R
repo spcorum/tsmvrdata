@@ -213,10 +213,45 @@ devtools::check(args = "--as-cran")
 usethis::use_tidy_style()
 
 
-
+###
 usethis::use_r('evaluate_model')
+# Install and restart: Cmd+Shift+B
+usethis::use_test('evaluate_model')
+devtools::test_file('R/evaluate_model.R')
+devtools::test()
+devtools::check(args = "--as-cran")
+# Documument
+roxygen2::roxygenize()
+# Commit
+devtools::check(args = "--as-cran")
+usethis::use_tidy_style()
+
+###
 usethis::use_r('error_curve')
+# Install and restart: Cmd+Shift+B
+usethis::use_test('error_curve')
+devtools::test_file('R/error_curve.R')
+devtools::test()
+devtools::check(args = "--as-cran")
+# Documument
+roxygen2::roxygenize()
+# Commit
+devtools::check(args = "--as-cran")
+usethis::use_tidy_style()
+
+###
 usethis::use_r('plot_error_curve')
+# Install and restart: Cmd+Shift+B
+usethis::use_test('plot_error_curve')
+devtools::test_file('R/plot_error_curve.R')
+devtools::test()
+devtools::check(args = "--as-cran")
+# Documument
+roxygen2::roxygenize()
+# Commit
+devtools::check(args = "--as-cran")
+usethis::use_tidy_style()
+
 
 
 
