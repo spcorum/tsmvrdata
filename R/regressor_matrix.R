@@ -24,8 +24,10 @@
 #' @export
 regressor_matrix <- function(p, q, b1 = sqrt(0.1), b2 = sqrt(0.1),
                              seed = NULL) {
-  stopifnot(p %% 1 == 0, p > 0, q %% 1 == 0, q > 0, b1 >= 0,
-            b1 <= 1, b2 >= 0, b2 <= 1)
+  stopifnot(
+    p %% 1 == 0, p > 0, q %% 1 == 0, q > 0, b1 >= 0,
+    b1 <= 1, b2 >= 0, b2 <= 1
+  )
   set.seed(seed)
   W <- matrix(stats::rnorm(p * q), nrow = p, ncol = q)
   K <- matrix(rbern(p * q, b1), nrow = p, ncol = q)

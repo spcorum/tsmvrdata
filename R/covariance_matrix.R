@@ -22,10 +22,10 @@
 covariance_matrix <- function(q, type = "AR1", rho = 0.7, h = 0.9,
                               power = 1, n_edge = 1, zero_appeal = 1,
                               min_ev = 0.18) {
-
-    stopifnot(q %% 1 == 0, q > 0, rho >= 0, rho < 1, h >= 0, h < 1,
-              power > 0, zero_appeal > 0, n_edge > 0, min_ev > 0
-    )
+  stopifnot(
+    q %% 1 == 0, q > 0, rho >= 0, rho < 1, h >= 0, h < 1,
+    power > 0, zero_appeal > 0, n_edge > 0, min_ev > 0
+  )
 
   if (type == "AR1") {
     covariance <- covar_ar1(q, rho)
