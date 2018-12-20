@@ -20,16 +20,16 @@
 #'
 #' @return Returns an FGN covariance matrix.
 #' @export
-precision_sfn <- function(q, power = 1, zero_appeal = 1, n_edge = 1,
+precision_sfn <- function(q, power = 1, n_edge = 1, zero_appeal = 1,
                           min_ev = 0.18) {
   stopifnot(
-    q %% 1 == 0, q > 0, power >= 0, zero_appeal > 0, n_edge %% 1 == 0, n_edge > 0,
-    min_ev >= 0
+    q %% 1 == 0, q > 0, power > 0, zero_appeal > 0, n_edge > 0,
+    min_ev > 0
   )
   Sigma <- as.matrix(igraph::get.adjacency(igraph::barabasi.game(
     n = q, m = n_edge,
     power = power,
-    zero_appeal = zero_appeal,
+    zero.appeal = zero_appeal,
     directed = F,
     algorithm = "psumtree"
   )))

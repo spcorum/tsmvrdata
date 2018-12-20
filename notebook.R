@@ -115,7 +115,7 @@ roxygen2::roxygenize()
 # Commit at command line
 usethis::use_tidy_style()
 
-usethis::use_r('mvrnorm')
+usethis::use_r('covar_ar1')
 roxygen2::roxygenize()
 devtools::spell_check()
 # Restart R: Cmd+Shift+F10
@@ -204,13 +204,13 @@ usethis::use_version(which=wch)
 # Knit README.Rmd
 # Add, commit, and push in command line
 
-# which = A string specifying which level to increment, one of: 
-# "major", "minor", "patch", "dev". If NULL, user can choose 
+# which = A string specifying which level to increment, one of:
+# "major", "minor", "patch", "dev". If NULL, user can choose
 # interactively.
 
 
 # Tasks ---------------------------------------------------------------
-# 
+#
 # 0. tsmvrextras: test
 # 1. tsmvrextras: find, preprocess, and add real data (4-9 more)
 # 2. tsmvr: re-constuct tsmvr in full development environment

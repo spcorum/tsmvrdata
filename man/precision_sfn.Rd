@@ -4,7 +4,7 @@
 \alias{precision_sfn}
 \title{Precision matrix of scale free network}
 \usage{
-precision_sfn(q, power = 1, zero_appeal = 1, n_edge = 1,
+precision_sfn(q, power = 1, n_edge = 1, zero_appeal = 1,
   min_ev = 0.18)
 }
 \arguments{
@@ -12,9 +12,9 @@ precision_sfn(q, power = 1, zero_appeal = 1, n_edge = 1,
 
 \item{power}{power of the preferential attachment, (\code{a} > 0, default 1 or linear preferential attachment)}
 
-\item{zero_appeal}{the ‘attractiveness’ of the vertices with no adjacent edges (\code{b} >0 0, default 1)}
-
 \item{n_edge}{number of edges to add to the network per growth iteration (\code{n_edge} > 0, default 1)}
+
+\item{zero_appeal}{the ‘attractiveness’ of the vertices with no adjacent edges (\code{b} >0 0, default 1)}
 
 \item{min_ev}{minimum eigenvalue of resulting precision matrix (\code{min_ev} > 0, default 0.18)}
 }
