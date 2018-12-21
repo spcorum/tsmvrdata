@@ -4,25 +4,25 @@
 \alias{model_error}
 \title{Model error}
 \usage{
-model_error(U, W, Sigma = NULL)
+model_error(U, V, Sigma = NULL)
 }
 \arguments{
 \item{U}{matrix (m-by-n)}
 
-\item{W}{matrix (m-by-n)}
+\item{V}{matrix (m-by-n)}
 
 \item{Sigma}{positive definite covariance matrix (m-by-m)}
 }
 \value{
-The model error between \code{U} and \code{W} given
+The model error between \code{U} and \code{V} given
 \code{Sigma}.
 }
 \description{
 Given a positive definite covariance matrix \eqn{\Sigma}, this
-function calculates the model error between two matrices \eqn{X1}
-and \eqn{X2} according to the formula
-\deqn{Trace [ (U-W)' \Sigma' \Sigma (U-W) ]/(mn),}
-where \eqn{m}, \eqn{n} are the dimensions of \eqn{U} (\eqn{W}).
+function calculates the model error between two matrices \eqn{U}
+and \eqn{V} according to the formula
+\deqn{Trace [ (U-V)' \Sigma' \Sigma (U-V) ]/(mn),}
+where \eqn{m}, \eqn{n} are the dimensions of \eqn{U} (\eqn{V}).
 If no covariance matrix is specified, the function calculates the
 model error using the identity covariance matrix, which is
 equivalent the normalized squared matrix error).
