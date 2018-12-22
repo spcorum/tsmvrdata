@@ -20,7 +20,7 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    tsmvr (>= 0.1.1),
+    tsmvr (>= 0.0.0.9000),
     ggplot2,
     AUC,
     MASS,
