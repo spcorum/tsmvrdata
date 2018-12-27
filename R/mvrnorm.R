@@ -6,13 +6,14 @@
 #' @param mu mean (\eqn{\mu})
 #' @param Sigma positive definite covariance matrix (\eqn{\Sigma})
 #' @param reps number of random matrix realizations to return
+#' @param
 #' @return Returns a \code{rep} length list of matrices of \code{n}
 #' stacked vectors, each an iid. realization of \eqn{N(\mu,\Sigma)}.
 #' If \code{reps}=1, then a single matrix returned not in a list. Otherwise,
 #' \code{reps} matrices are returned in a list.
 #'
 #' @export
-mvrnorm <- function(n, mu = 0, Sigma, reps = 1) {
+mvrnorm <- function(n, mu = 0, Sigma, reps = 1, seed = NULL) {
   p <- length(mu)
   Sigma.dim <- dim(Sigma)
   stopifnot(
@@ -28,6 +29,7 @@ mvrnorm <- function(n, mu = 0, Sigma, reps = 1) {
   # Generate an n-by-p random standard normal matrix(es) and
   # n-by-p matrix that is row-wise iid N_p(mu,Sigma) ------------------
   N.list <- as.list(rep(0, reps))
+  set.seed(seed)
   for (i in 1:reps) {
     Z <- matrix(stats::rnorm(n * p), nrow = n, ncol = p)
     N.list[[i]] <- rep(1, n) %*% t(mu) + Z %*% Sigma.sqrt

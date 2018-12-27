@@ -4,7 +4,7 @@
 \alias{make_data}
 \title{Make a synthetic dataset}
 \usage{
-make_data(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma,
+make_data(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1,
   rho_x = 0.6, type = "AR1", rho_err = 0.7, h = 0.9, power = 1,
   n_edge = 1, zero_appeal = 1, min_ev = 0.18, reps = 1,
   seed = NULL)

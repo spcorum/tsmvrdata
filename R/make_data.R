@@ -44,8 +44,8 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1,
                       min_ev = 0.18, reps = 1, seed = NULL) {
   stopifnot(
     n %% 1 == 0, n > 0, p %% 1 == 0, p > 0, q %% 1 == 0, q > 0,
-    rho_x >= 0, rho_x < 1, type == "AR1" || type == "FGN" ||
-      type == "SFN",
+    is.numeric(n), is.numeric(p), is.numeric(q), sigma >= 0,
+    rho_x >= 0, rho_x < 1, type %in% c("AR1", "FGN", "SFN"),
     rho_err >= 0, rho_err < 1, h >= 0, h < 1, power > 0, zero_appeal > 0,
     n_edge > 0, min_ev > 0, reps %% 1 == 0, reps > 0
   )
@@ -69,16 +69,16 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1,
   )
 
   # Calculate a random (list of draws of the) dataset -----------------
-  X <- mvrnorm(n, rep(0, p), Sigma_x$covariance)
-  B <- regressor_matrix(p, q, b1, b2)
+  X <- mvrnorm(n, rep(0, p), Sigma_x$covariance, seed = seed)
+  B <- regressor_matrix(p, q, b1, b2, seed = seed)
   XB <- X %*% B
-  E.list <- mvrnorm(n, rep(0, q), Sigma_err$covariance, reps)
+  E.list <- mvrnorm(n, rep(0, q), Sigma_err$covariance, reps, seed = seed)
   data.list <- as.list(rep(list(NULL), reps))
   for (i in 1:reps) {
     data.list[[i]]$X <- X
     data.list[[i]]$B <- B
-    data.list[[i]]$Y <- XB + sigma^2 * E.list[[i]]
-    data.list[[i]]$E <- E.list[[i]]
+    data.list[[i]]$Y <- XB + sigma^2 * E.list
+    data.list[[i]]$E <- E.list
     data.list[[i]]$Sigma <- Sigma_err$covariance
     data.list[[i]]$Omega <- Sigma_err$precision
     data.list[[i]]$Sigma_x <- Sigma_x$covariance
