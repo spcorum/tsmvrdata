@@ -28,7 +28,7 @@ test_that("b1 cannot be negative", {
   expect_error(regressor_matrix(p = 1, q = 1, b1 = -10^-6, b2 = 0.5))
 })
 
-test_that("b1 cannot be greater than unite", {
+test_that("b1 cannot be greater than unity", {
   expect_error(regressor_matrix(p = 1, q = 1, b1 = 1 + 10^-6, b2 = 0.5))
 })
 
@@ -36,7 +36,7 @@ test_that("b2 cannot be negative", {
   expect_error(regressor_matrix(p = 1, q = 1, b1 = 0.5, b2 = -10^-6))
 })
 
-test_that("b2 cannot be greater than unite", {
+test_that("b2 cannot be greater than unity", {
   expect_error(regressor_matrix(p = 1, q = 1, b1 = 0.5, b2 = 1 + 10^-6))
 })
 

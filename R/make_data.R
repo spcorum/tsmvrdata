@@ -38,7 +38,7 @@
 #' \insertRef{MRCE}{tsmvrextras}
 #'
 #' @export
-make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma,
+make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1,
                       rho_x = 0.6, type = "AR1", rho_err = 0.7, h = 0.9,
                       power = 1, n_edge = 1, zero_appeal = 1,
                       min_ev = 0.18, reps = 1, seed = NULL) {
@@ -73,15 +73,15 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma,
   B <- regressor_matrix(p, q, b1, b2)
   XB <- X %*% B
   E.list <- mvrnorm(n, rep(0, q), Sigma_err$covariance, reps)
-  data.list <- as.list(rep(0, reps))
+  data.list <- as.list(rep(list(NULL), reps))
   for (i in 1:reps) {
-    data.list[[1]]$X <- X
+    data.list[[i]]$X <- X
     data.list[[i]]$B <- B
     data.list[[i]]$Y <- XB + sigma^2 * E.list[[i]]
     data.list[[i]]$E <- E.list[[i]]
-    data.list[[i]]$Sigma_err <- Sigma_err$covariance
+    data.list[[i]]$Sigma <- Sigma_err$covariance
     data.list[[i]]$Omega <- Sigma_err$precision
-    data.list[[i]]$Sigma_x <- Sigma_x
+    data.list[[i]]$Sigma_x <- Sigma_x$covariance
   }
 
   return(data.list)

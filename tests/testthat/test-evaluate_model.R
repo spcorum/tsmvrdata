@@ -1,50 +1,50 @@
 context("test-evaluate_model")
 
-test_that("Star is not numeric", {
+test_that("Star cannot be numeric", {
   expect_error(evaluate_model(Star = numeric(), Hat = matrix()))
 })
 
-test_that("Star is not a vector", {
+test_that("Star cannot be a vector", {
   expect_error(evaluate_model(Star = c(), Hat = matrix()))
 })
 
-test_that("Star is not a string", {
+test_that("Star cannot be a string", {
   expect_error(evaluate_model(Star = "", Hat = matrix()))
 })
 
-test_that("Star is not a list", {
+test_that("Star cannot be a list", {
   expect_error(evaluate_model(Star = list(), Sigma = matrix()))
 })
 
-test_that("Hat is not numeric", {
+test_that("Hat cannot be numeric", {
   expect_error(evaluate_model(Star = matrix(), Hat = numaric()))
 })
 
-test_that("Hat is not a vector", {
+test_that("Hat cannot be a vector", {
   expect_error(evaluate_model(Star = matrix(), Hat = c()))
 })
 
-test_that("Hat is not a string", {
+test_that("Hat cannot be a string", {
   expect_error(evaluate_model(Star = matrix(), Hat = ""))
 })
 
-test_that("Hat is not a list", {
+test_that("Hat cannot be a list", {
   expect_error(evaluate_model(Star = matrix(), Hat = list()))
 })
 
-test_that("Sigma is not numeric", {
+test_that("Sigma cannot be numeric", {
   expect_error(evaluate_model(Star = matrix(), Hat = matrix(), Sigma = numeric()))
 })
 
-test_that("Sigma is not a vector", {
+test_that("Sigma cannot be a vector", {
   expect_error(evaluate_model(Star = matrix(), Hat = matrix(), Sigma = c()))
 })
 
-test_that("Sigma is not a string", {
+test_that("Sigma cannot be a string", {
   expect_error(evaluate_model(Star = matrix(), Hat = matrix(), Sigma = ""))
 })
 
-test_that("Sigma is not a list", {
+test_that("Sigma cannot be a list", {
   expect_error(evaluate_model(Star = matrix(), Hat = matrix(), Sigma = list()))
 })
 
