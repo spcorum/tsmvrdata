@@ -88,6 +88,28 @@ test_that("output vector is of expected length", {
     expect_equal(length(error_curve(Hat.list,Star)), steps)
 })
 
+test_that("all entries output vector are numeric", {
+    steps = 100
+    Hat.list = rep(list(NULL),steps)
+    Star = matrix(rep(0,9),3,3)
+    for (i in 1:steps) {
+        mat_entry = (1-(i-1)/steps)/1000
+        Hat.list[[i]] = matrix(rep(mat_entry,9),3,3)
+    }
+    expect_true(all(sapply(error_curve(Hat.list,Star),is.numeric)))
+})
+
+test_that("all entries output vector are numeric 'double' ", {
+    steps = 100
+    Hat.list = rep(list(NULL),steps)
+    Star = matrix(rep(0,9),3,3)
+    for (i in 1:steps) {
+        mat_entry = (1-(i-1)/steps)/1000
+        Hat.list[[i]] = matrix(rep(mat_entry,9),3,3)
+    }
+    expect_true(all(sapply(error_curve(Hat.list,Star),typeof) == "double"))
+})
+
 test_that("output vector entries are all non-negative", {
     steps = 1000
     Hat.list = rep(list(NULL),steps)
