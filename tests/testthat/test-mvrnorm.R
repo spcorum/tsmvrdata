@@ -23,8 +23,7 @@ test_that("length of output list is same as reps", {
 
 test_that("replicate output matrix is of dimension n-by-length(mu)", {
   expect_equal(
-    dim(mvrnorm(n = 100, mu = rep(0, 10), Sigma = diag(10), reps = 2
-                )[[2]]),
+    dim(mvrnorm(n = 100, mu = rep(0, 10), Sigma = diag(10), reps = 2)[[2]]),
     c(100, 10)
   )
 })

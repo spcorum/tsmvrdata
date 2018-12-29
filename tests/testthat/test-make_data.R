@@ -77,7 +77,7 @@ test_that("rho_x cannot be one", {
 })
 
 test_that("rho_x cannot be greater than one", {
-    expect_error(make_data(n = 10, p = 3, q = 2, rho_x = 1+1e-6))
+  expect_error(make_data(n = 10, p = 3, q = 2, rho_x = 1 + 1e-6))
 })
 
 test_that("rho_err cannot be negative", {
@@ -89,7 +89,7 @@ test_that("rho_err cannot be one", {
 })
 
 test_that("rho_err cannot be greater than one", {
-    expect_error(make_data(n = 10, p = 3, q = 2, rho_err = 1+1e-6))
+  expect_error(make_data(n = 10, p = 3, q = 2, rho_err = 1 + 1e-6))
 })
 
 test_that("h cannot be negative", {
@@ -101,7 +101,7 @@ test_that("h cannot be one", {
 })
 
 test_that("h cannot be greater than one", {
-    expect_error(make_data(n = 10, p = 3, q = 2, h = 1+1e-6))
+  expect_error(make_data(n = 10, p = 3, q = 2, h = 1 + 1e-6))
 })
 
 test_that("power cannot be negative", {
@@ -133,33 +133,35 @@ test_that("type is not some arbitrary string", {
 })
 
 test_that("length of returned list is as expected", {
-    reps = 10
-    data = make_data(n = 5, p = 3, q = 2, reps = reps)
-    expect_true(length(data) == reps)
+  reps <- 10
+  data <- make_data(n = 5, p = 3, q = 2, reps = reps)
+  expect_true(length(data) == reps)
 })
 
 test_that("length of all returned sublists are the same", {
-    data = make_data(n = 5, p = 3, q = 2, reps = 10)
-    expect_true( length(unique(sapply(data,length))) == 1)
+  data <- make_data(n = 5, p = 3, q = 2, reps = 10)
+  expect_true(length(unique(sapply(data, length))) == 1)
 })
 
 test_that("length of a given returned sublist is as expected: 7", {
-    data = make_data(n = 5, p = 3, q = 2, reps = 10)
-    expect_true( length(data[[3]]) == 7)
+  data <- make_data(n = 5, p = 3, q = 2, reps = 10)
+  expect_true(length(data[[3]]) == 7)
 })
 
 test_that("returned sublists all have the same labeled elements", {
   expect_true(
-    length( unique(lapply(make_data(n=5,p=3,q=2,reps=10),labels))) == 1
+    length(unique(lapply(make_data(n = 5, p = 3, q = 2, reps = 10), labels))) == 1
   )
 })
 
 test_that("labeled elements of a given returned sublist is as
           expected", {
-    expect_true(
-        all.equal(lapply(make_data(n=5,p=3,q=2,reps=10),labels)[[3]],
-          c('X', 'B', 'Y', 'E', 'Sigma', 'Omega', 'Sigma_x'))
+  expect_true(
+    all.equal(
+      lapply(make_data(n = 5, p = 3, q = 2, reps = 10), labels)[[3]],
+      c("X", "B", "Y", "E", "Sigma", "Omega", "Sigma_x")
     )
+  )
 })
 
 test_that("At least one entry labeled 'X' in returned output lists is
@@ -169,15 +171,18 @@ test_that("At least one entry labeled 'X' in returned output lists is
     n = 5, p = 3, q = 2, b1 = sqrt(0.5),
     b2 = sqrt(0.5), sigma = 1, rho_x = 0.6,
     type = "AR1", rho_err = 0.7, seed = 1729
-    )[[1]]
+  )[[1]]
   test_mat <- matrix(
-    c(0.150,  0.067,  0.169,
+    c(
+      0.150, 0.067, 0.169,
       0.699, -1.616, -0.892,
       0.970, -0.289, -0.012,
       0.112, -0.257, -0.585,
-      0.800,  0.106,  0.318),
-    5, 3, byrow = T
-    )
+      0.800, 0.106, 0.318
+    ),
+    5, 3,
+    byrow = T
+  )
   expect_equal(round(data$X, 3), test_mat)
 })
 
@@ -188,14 +193,18 @@ test_that("At least one entry labeled 'Y' in returned output lists is
     n = 5, p = 3, q = 2, b1 = sqrt(0.5),
     b2 = sqrt(0.5), sigma = 1, rho_x = 0.6,
     type = "AR1", rho_err = 0.7, seed = 1729
-    )[[1]]
+  )[[1]]
   test_mat <- matrix(
-    c( 0.382,  0.000,
+    c(
+      0.382, 0.000,
       -0.116, -1.373,
-       1.180, -0.359,
+      1.180, -0.359,
       -0.557, -0.077,
-       1.346, -0.060),
-    5, 2, byrow = T )
+      1.346, -0.060
+    ),
+    5, 2,
+    byrow = T
+  )
   expect_equal(round(data$Y, 3), test_mat)
 })
 
@@ -208,10 +217,13 @@ test_that("At least one entry labeled 'B' in returned output lists is
     type = "AR1", rho_err = 0.7, seed = 1729
   )[[1]]
   test_mat <- matrix(
-    c(0.215, 0,
+    c(
+      0.215, 0,
       0.000, 0,
-      1.086, 0),
-    3, 2,byrow = T
+      1.086, 0
+    ),
+    3, 2,
+    byrow = T
   )
   expect_equal(round(data$B, 3), test_mat)
 })
@@ -225,12 +237,15 @@ test_that("At least one entry labeled 'E' in returned output lists is
     type = "AR1", rho_err = 0.7, seed = 1729
   )[[1]]
   test_mat <- matrix(
-    c(0.166, 0.000,
+    c(
+      0.166, 0.000,
       0.703, -1.373,
       0.985, -0.359,
       0.054, -0.077,
-      0.828, -0.060),
-    5, 2, byrow = T
+      0.828, -0.060
+    ),
+    5, 2,
+    byrow = T
   )
   expect_equal(round(data$E, 3), test_mat)
 })
@@ -244,9 +259,12 @@ test_that("At least one entry labeled 'Sigma' in returned output lists is
     type = "AR1", rho_err = 0.7, seed = 1729
   )[[1]]
   test_mat <- matrix(
-    c(1.0, 0.7,
-      0.7, 1.0),
-      2, 2, byrow = T
+    c(
+      1.0, 0.7,
+      0.7, 1.0
+    ),
+    2, 2,
+    byrow = T
   )
   expect_equal(round(data$Sigma, 3), test_mat)
 })
@@ -260,9 +278,12 @@ test_that("At least one entry labeled 'Omega' in returned output lists is
     type = "AR1", rho_err = 0.7, seed = 1729
   )[[1]]
   test_mat <- matrix(
-    c( 1.961, -1.373,
-      -1.373,  1.961),
-    2, 2, byrow = T
+    c(
+      1.961, -1.373,
+      -1.373, 1.961
+    ),
+    2, 2,
+    byrow = T
   )
   expect_equal(round(data$Omega, 3), test_mat)
 })
@@ -276,10 +297,13 @@ test_that("At least one entry labeled 'Sigma_x' in returned output lists is
     type = "AR1", rho_err = 0.7, seed = 1729
   )[[1]]
   test_mat <- matrix(
-    c(1.00, 0.6, 0.36,
+    c(
+      1.00, 0.6, 0.36,
       0.60, 1.0, 0.60,
-      0.36, 0.6, 1.00),
-    3, 3, byrow = T
+      0.36, 0.6, 1.00
+    ),
+    3, 3,
+    byrow = T
   )
   expect_equal(round(data$Sigma_x, 3), test_mat)
 })

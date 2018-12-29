@@ -1,129 +1,121 @@
 context("test-error_curve")
 
 test_that("Hat.list cannot be NULL", {
-    expect_error(error_curve(Hat.list=NULL))
+  expect_error(error_curve(Hat.list = NULL))
 })
 
 test_that("Hat.list cannot be numeric", {
-    expect_error(error_curve(Hat.list=1))
+  expect_error(error_curve(Hat.list = 1))
 })
 
 test_that("Hat.list cannot be a string", {
-    expect_error(error_curve(Hat.list='a'))
+  expect_error(error_curve(Hat.list = "a"))
 })
 
 test_that("Hat.list cannot be a vector", {
-    expect_error(error_curve(Hat.list=c(1,2)))
+  expect_error(error_curve(Hat.list = c(1, 2)))
 })
 
 test_that("Hat.list cannot be a matrix", {
-    expect_error(error_curve(Hat.list=matrix(c(1,2),1,2)))
+  expect_error(error_curve(Hat.list = matrix(c(1, 2), 1, 2)))
 })
 
 test_that("If Hat.list is a list, it must be a list of all
           matrices", {
-              steps = 100
-              Hat.list = rep(list(NULL),steps)
-              for (i in 1:steps) {
-                  mat_entry = (1-(i-1)/steps)/1000
-                  Hat.list[[i]] = matrix(rep(mat_entry,9),3,3)
-              }
-    k = sample(x = seq.int(from=1,to=steps), size = 1)
-    Hat.list[[k]] = 0
-    expect_error(error_curve(Hat.list=matrix(c(1,2),1,2)))
+  steps <- 100
+  Hat.list <- rep(list(NULL), steps)
+  for (i in 1:steps) {
+    mat_entry <- (1 - (i - 1) / steps) / 1000
+    Hat.list[[i]] <- matrix(rep(mat_entry, 9), 3, 3)
+  }
+  k <- sample(x = seq.int(from = 1, to = steps), size = 1)
+  Hat.list[[k]] <- 0
+  expect_error(error_curve(Hat.list = matrix(c(1, 2), 1, 2)))
 })
 
 test_that("Sigma cannot be numeric", {
-    steps = 100
-    Hat.list = rep(list(NULL),steps)
-    for (i in 1:steps) {
-        mat_entry = (1-(i-1)/steps)/1000
-        Hat.list[[i]] = matrix(rep(mat_entry,9),3,3)
-    }
-    expect_error(error_curve(Hat.list, Star = 1))
+  steps <- 100
+  Hat.list <- rep(list(NULL), steps)
+  for (i in 1:steps) {
+    mat_entry <- (1 - (i - 1) / steps) / 1000
+    Hat.list[[i]] <- matrix(rep(mat_entry, 9), 3, 3)
+  }
+  expect_error(error_curve(Hat.list, Star = 1))
 })
 
 test_that("Sigma cannot be a string", {
-    expect_error(error_curve(Hat.list='a', Star = 'a'))
+  expect_error(error_curve(Hat.list = "a", Star = "a"))
 })
 
 test_that("Sigma cannot be a vector", {
-    expect_error(error_curve(Hat.list=c(1,2), Star = c(1,2)))
+  expect_error(error_curve(Hat.list = c(1, 2), Star = c(1, 2)))
 })
 
 test_that("Sigma cannot be a matrix", {
-    expect_error(error_curve(Hat.list=list(), Star = list()))
+  expect_error(error_curve(Hat.list = list(), Star = list()))
 })
 
 test_that("output is a vector", {
-    steps = 100
-    Hat.list = rep(list(NULL),steps)
-    Star = matrix(rep(0,9),3,3)
-    for (i in 1:steps) {
-        mat_entry = (1-(i-1)/steps)/1000
-        Hat.list[[i]] = matrix(rep(mat_entry,9),3,3)
-    }
-    expect_true(is.vector(error_curve(Hat.list,Star)))
+  steps <- 100
+  Hat.list <- rep(list(NULL), steps)
+  Star <- matrix(rep(0, 9), 3, 3)
+  for (i in 1:steps) {
+    mat_entry <- (1 - (i - 1) / steps) / 1000
+    Hat.list[[i]] <- matrix(rep(mat_entry, 9), 3, 3)
+  }
+  expect_true(is.vector(error_curve(Hat.list, Star)))
 })
 
 test_that("output is a vector", {
-    steps = 100
-    Hat.list = rep(list(NULL),steps)
-    Star = matrix(rep(0,9),3,3)
-    for (i in 1:steps) {
-        mat_entry = (1-(i-1)/steps)/1000
-        Hat.list[[i]] = matrix(rep(mat_entry,9),3,3)
-    }
-    expect_true(is.vector(error_curve(Hat.list,Star)))
+  steps <- 100
+  Hat.list <- rep(list(NULL), steps)
+  Star <- matrix(rep(0, 9), 3, 3)
+  for (i in 1:steps) {
+    mat_entry <- (1 - (i - 1) / steps) / 1000
+    Hat.list[[i]] <- matrix(rep(mat_entry, 9), 3, 3)
+  }
+  expect_true(is.vector(error_curve(Hat.list, Star)))
 })
 
 test_that("output vector is of expected length", {
-    steps = 100
-    Hat.list = rep(list(NULL),steps)
-    Star = matrix(rep(0,9),3,3)
-    for (i in 1:steps) {
-        mat_entry = (1-(i-1)/steps)/1000
-        Hat.list[[i]] = matrix(rep(mat_entry,9),3,3)
-    }
-    expect_equal(length(error_curve(Hat.list,Star)), steps)
+  steps <- 100
+  Hat.list <- rep(list(NULL), steps)
+  Star <- matrix(rep(0, 9), 3, 3)
+  for (i in 1:steps) {
+    mat_entry <- (1 - (i - 1) / steps) / 1000
+    Hat.list[[i]] <- matrix(rep(mat_entry, 9), 3, 3)
+  }
+  expect_equal(length(error_curve(Hat.list, Star)), steps)
 })
 
 test_that("all entries output vector are numeric", {
-    steps = 100
-    Hat.list = rep(list(NULL),steps)
-    Star = matrix(rep(0,9),3,3)
-    for (i in 1:steps) {
-        mat_entry = (1-(i-1)/steps)/1000
-        Hat.list[[i]] = matrix(rep(mat_entry,9),3,3)
-    }
-    expect_true(all(sapply(error_curve(Hat.list,Star),is.numeric)))
+  steps <- 100
+  Hat.list <- rep(list(NULL), steps)
+  Star <- matrix(rep(0, 9), 3, 3)
+  for (i in 1:steps) {
+    mat_entry <- (1 - (i - 1) / steps) / 1000
+    Hat.list[[i]] <- matrix(rep(mat_entry, 9), 3, 3)
+  }
+  expect_true(all(sapply(error_curve(Hat.list, Star), is.numeric)))
 })
 
 test_that("all entries output vector are numeric 'double' ", {
-    steps = 100
-    Hat.list = rep(list(NULL),steps)
-    Star = matrix(rep(0,9),3,3)
-    for (i in 1:steps) {
-        mat_entry = (1-(i-1)/steps)/1000
-        Hat.list[[i]] = matrix(rep(mat_entry,9),3,3)
-    }
-    expect_true(all(sapply(error_curve(Hat.list,Star),typeof) == "double"))
+  steps <- 100
+  Hat.list <- rep(list(NULL), steps)
+  Star <- matrix(rep(0, 9), 3, 3)
+  for (i in 1:steps) {
+    mat_entry <- (1 - (i - 1) / steps) / 1000
+    Hat.list[[i]] <- matrix(rep(mat_entry, 9), 3, 3)
+  }
+  expect_true(all(sapply(error_curve(Hat.list, Star), typeof) == "double"))
 })
 
 test_that("output vector entries are all non-negative", {
-    steps = 1000
-    Hat.list = rep(list(NULL),steps)
-    Star = matrix(rnorm(n=9,sd=0.001),3,3)
-    for (i in 1:steps) {
-        Hat.list[[i]] = matrix(rnorm(n=9,sd=0.001),3,3)
-    }
-    expect_true(all(error_curve(Hat.list,Star) >= 0))
+  steps <- 1000
+  Hat.list <- rep(list(NULL), steps)
+  Star <- matrix(rnorm(n = 9, sd = 0.001), 3, 3)
+  for (i in 1:steps) {
+    Hat.list[[i]] <- matrix(rnorm(n = 9, sd = 0.001), 3, 3)
+  }
+  expect_true(all(error_curve(Hat.list, Star) >= 0))
 })
-
-# test_that("all elements of Hat.list are matrices", {
-#   expect_true(all(sapply(Hat.list,is.matrix)))
-# })
-#
-# test_that("all matrices in Hat.list have the same dimension", {
-#     expect_true(all(sapply(Hat.list,dim)==dim(Hat.list[[1]])))
-# })
