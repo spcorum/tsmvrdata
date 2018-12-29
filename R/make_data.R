@@ -69,7 +69,7 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1,
   )
 
   # Calculate a random (list of draws of the) dataset -----------------
-  X <- mvrnorm(n, rep(0, p), Sigma_x$covariance, seed = seed)
+  X <- mvrnorm(n, rep(0, p), Sigma_x$covariance, seed = seed)[[1]]
   B <- regressor_matrix(p, q, b1, b2, seed = seed)
   XB <- X %*% B
   E.list <- mvrnorm(n, rep(0, q), Sigma_err$covariance, reps, seed = seed)
@@ -77,8 +77,8 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1,
   for (i in 1:reps) {
     data.list[[i]]$X <- X
     data.list[[i]]$B <- B
-    data.list[[i]]$Y <- XB + sigma^2 * E.list
-    data.list[[i]]$E <- E.list
+    data.list[[i]]$Y <- XB + sigma^2 * E.list[[i]]
+    data.list[[i]]$E <- E.list[[i]]
     data.list[[i]]$Sigma <- Sigma_err$covariance
     data.list[[i]]$Omega <- Sigma_err$precision
     data.list[[i]]$Sigma_x <- Sigma_x$covariance

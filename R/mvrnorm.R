@@ -2,11 +2,12 @@
 #'
 #' Generates vectors iid. from the multivariate normal distribution.
 #'
-#' @param n number of realizations
-#' @param mu mean (\eqn{\mu})
+#' @param n number of realizations (positive integer-valued numeric)
+#' @param mu mean (\eqn{\mu}) (numeric)
 #' @param Sigma positive definite covariance matrix (\eqn{\Sigma})
-#' @param reps number of random matrix realizations to return
-#' @param
+#' @param reps number of random matrix realizations to return (positive integer-valued numeric)
+#' @param seed sets seed for pseudorandom number generator (numeric)
+#'
 #' @return Returns a \code{rep} length list of matrices of \code{n}
 #' stacked vectors, each an iid. realization of \eqn{N(\mu,\Sigma)}.
 #' If \code{reps}=1, then a single matrix returned not in a list. Otherwise,
@@ -34,9 +35,10 @@ mvrnorm <- function(n, mu = 0, Sigma, reps = 1, seed = NULL) {
     Z <- matrix(stats::rnorm(n * p), nrow = n, ncol = p)
     N.list[[i]] <- rep(1, n) %*% t(mu) + Z %*% Sigma.sqrt
   }
-  if (reps == 1) {
-    return(N.list[[1]])
-  } else {
-    return(N.list)
-  }
+  return(N.list)
+  # if (reps == 1) {
+  #   return(N.list[[1]])
+  # } else {
+  #   return(N.list)
+  # }
 }

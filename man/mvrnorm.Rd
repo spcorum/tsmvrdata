@@ -4,7 +4,7 @@
 \alias{mvrnorm}
 \title{Multivariate normal random vector generator}
 \usage{
-mvrnorm(n, mu = 0, Sigma, reps = 1)
+mvrnorm(n, mu = 0, Sigma, reps = 1, seed = NULL)
 }
 \arguments{
 \item{n}{number of realizations}
