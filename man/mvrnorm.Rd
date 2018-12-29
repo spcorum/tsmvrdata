@@ -7,13 +7,15 @@
 mvrnorm(n, mu = 0, Sigma, reps = 1, seed = NULL)
 }
 \arguments{
-\item{n}{number of realizations}
+\item{n}{number of realizations (positive integer-valued numeric)}
 
-\item{mu}{mean (\eqn{\mu})}
+\item{mu}{mean (\eqn{\mu}) (numeric)}
 
 \item{Sigma}{positive definite covariance matrix (\eqn{\Sigma})}
 
-\item{reps}{number of random matrix realizations to return}
+\item{reps}{number of random matrix realizations to return (positive integer-valued numeric)}
+
+\item{seed}{sets seed for pseudorandom number generator (numeric)}
 }
 \value{
 Returns a \code{rep} length list of matrices of \code{n}
