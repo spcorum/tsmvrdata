@@ -25,16 +25,15 @@ error_curve <- function(Hat.list, Star = NULL) {
     length(Hat.list) > 0,
     all(sapply(Hat.list, is.matrix)),
     length(unique(lapply(Hat.list, dim))) == 1,
-    is.null(Star) ||
-      (is.matrix(Star) &&
+    is.null(Star) || is.matrix(Star),
+    is.matrix(Star) &&
         unique(lapply(Hat.list, dim))[[1]] == dim(Star)
-      )
   )
 
   k <- length(Hat.list)
   error_curve <- rep(0, k)
   if (is.null(Star)) Star <- Hat.list[[k]]
-  for (i in 1:k) error_curve[i] <- norm(Hat.list[[k]] - Star, "F")
+  for (i in 1:k) error_curve[i] <- norm(Hat.list[[i]] - Star, "F")
 
   return(error_curve)
 }
