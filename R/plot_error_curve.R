@@ -29,7 +29,7 @@ plot_error_curve <- function(est, tru, up = 1,
             is.numeric(est), is.numeric(tru),
             up %% 1 == 0, low %% 1 == 0,
             left %% 1 == 0, right %% 1 == 0,
-            up > down, left < right
+            up > low, left < right
      )
 
   k = length(est)

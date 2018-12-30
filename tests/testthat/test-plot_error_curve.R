@@ -34,8 +34,8 @@ test_that("up cannot be non-integer valued numeric", {
     expect_error(plot_error_curve(est = 1, tru = 1, up = 0.5))
 })
 
-test_that("down cannot be non-integer valued numeric", {
-    expect_error(plot_error_curve(est = 1, tru = 1, down = 0.5))
+test_that("low cannot be non-integer valued numeric", {
+    expect_error(plot_error_curve(est = 1, tru = 1, low = 0.5))
 })
 
 test_that("left cannot be non-integer valued numeric", {
@@ -46,11 +46,11 @@ test_that("right cannot be non-integer valued numeric", {
     expect_error(plot_error_curve(est = 1, tru = 1, right = 0.5))
 })
 
-test_that("up cannot be less than down", {
-    down = runif(1)*200-100
-    up = down - 1e6
+test_that("up cannot be less than low", {
+    low = runif(1)*200-100
+    up = low - 1e6
     expect_error(plot_error_curve(est = 1, tru = 1,
-                                  up = up, down = down))
+                                  up = up, low = low))
 })
 
 test_that("left cannot be less than right", {
@@ -61,6 +61,7 @@ test_that("left cannot be less than right", {
 })
 
 test_that("ggplot object is returned", {
+    library(ggplot2)
     expect_true(is.ggplot(plot_error_curve(est = 1, tru = 1)))
 })
 
