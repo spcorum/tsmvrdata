@@ -15,7 +15,7 @@ regressor_matrix(p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), seed = NULL)
 
 \item{b2}{a second Bernoulli parameter controlling the sparsity of the regressor matrix (0 <= \code{s2} <= 1)}
 
-\item{seed}{seed for pseudorandom number generator (optional)}
+\item{seed}{seed for pseudo-random number generator (numeric)}
 }
 \value{
 Returns a random sparse regressor matrix of dimension

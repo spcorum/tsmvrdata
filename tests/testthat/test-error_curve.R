@@ -5,11 +5,11 @@ test_that("Hat.list cannot be NULL", {
 })
 
 test_that("Hat.list cannot be numeric", {
-  expect_error(error_curve(Hat.list = 1))
+  expect_error(error_curve(Hat.list = 1, Star = NULL))
 })
 
 test_that("Hat.list cannot be a string", {
-  expect_error(error_curve(Hat.list = "a"))
+  expect_error(error_curve(Hat.list = "a", Star = NULL))
 })
 
 test_that("Hat.list cannot be a vector", {

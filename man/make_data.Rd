@@ -40,7 +40,7 @@ make_data(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1,
 
 \item{reps}{number of randomly drawn datasets to return (positive integer)}
 
-\item{seed}{seed for pseudorandom number generator}
+\item{seed}{seed for pseudo-random number generator}
 }
 \value{
 Returns a list of length \code{reps}. Each entry is itself

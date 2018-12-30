@@ -15,7 +15,7 @@ mvrnorm(n, mu = 0, Sigma, reps = 1, seed = NULL)
 
 \item{reps}{number of random matrix realizations to return (positive integer-valued numeric)}
 
-\item{seed}{sets seed for pseudorandom number generator (numeric)}
+\item{seed}{seed for pseudo-random number generator (numeric)}
 }
 \value{
 Returns a \code{rep} length list of matrices of \code{n}
