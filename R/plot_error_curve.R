@@ -4,9 +4,9 @@
 #' optimization algorithm using ggplot2.
 #'
 #'
-#' @param hat numeric vector representing the errors between iterates
+#' @param est numeric vector representing the errors between iterates
 #' and the final iterate
-#' @param star numeric vector representing the errors between iterates
+#' @param tru numeric vector representing the errors between iterates
 #' and the ground truth
 #' @param up upper limit of vertical axis
 #' @param low lower limit of vertical axis
@@ -21,62 +21,70 @@
 #' \code{\link{error_curve}}.
 #'
 #' @export
-plot_error_curve <- function(hat, star, up = 1, low = -5, left = 0, right = 100,
-                             auto = T) {
-  k <- length(hat)
-  stopifnot(k == length(star))
-  hat <- log2(hat)
-  star <- log2(star)
+plot_error_curve <- function(est, tru, up = 1,
+                             low = -5, left = 0,
+                             right = 100, auto = T) {
 
-  # If auto == T, calculate automatic axes limits.
-  if (auto == T) {
-    left <- 0
+  stopifnot(length(est) == length(tru),
+            is.numeric(est), is.numeric(tru),
+            up %% 1 == 0, low %% 1 == 0,
+            left %% 1 == 0, right %% 1 == 0,
+            up > down, left < right
+     )
 
-    # Tricky one is the left horizontal axis limit. First find
-    # where the star error curve flattens within a tolerance "x",
-    # and then plot some extra to the right of that (5 extra
-    # iterations if x < 25 or 20% more if x > 25).
-    tol <- 1e-3
-    r.logical <- which((pracma::gradient(star) < tol) == T)
-    if (length(r.logical) == 0) {
-      right <- length(star)
-    } else {
-      x <- min(r.logical)
-      if (x < 25) {
-        right <- x + 5
-      } else {
-        right <- round(1.2 * x)
-      }
-    }
+  k = length(est)
+  logest = log2(est)
+  logtru = log2(tru)
 
-    # Find general place of left-right axis limits, and then
-    # scale so there is some scaled white space below and above
-    # the two curves.
-    slace <- 0.15
-    y <- max(c(hat[0], star[0]))
-    z <- min(c(hat[right], star[right]))
-    if (y <= z) { # (enzure y > z, and if not flip)
-      t <- y
-      y <- z
-      z <- t
-    }
-    if (y >= 0) {
-      up <- (1 + scale) * y
-    } else {
-      up <- (1 - scale) * y
-    }
-    if (z <= 0) {
-      low <- (1 + scale) * z
-    } else {
-      low <- (1 - scale) * z
-    }
-  }
+  # # If auto == T, calculate automatic axes limits.
+  # if (auto == T) {
+  #   left <- 0
+  #
+  #   # Tricky one is the left horizontal axis limit. First find
+  #   # where the tru error curve flattens within a tolerance "x",
+  #   # and then plot some extra to the right of test (5 extra
+  #   # iterations if x < 25 or 20% more if x > 25).
+  #   tol <- 1e-3
+  #   r.logical <- which((pracma::gradient(tru) < tol) == T)
+  #   if (length(r.logical) == 0) {
+  #     right <- length(tru)
+  #   } else {
+  #     x <- min(r.logical)
+  #     if (x < 25) {
+  #       right <- x + 5
+  #     } else {
+  #       right <- round(1.2 * x)
+  #     }
+  #   }
+  #
+  #   # Find general place of left-right axis limits, and then
+  #   # scale so there is some scaled white space below and above
+  #   # the two curves.
+  #   slace <- 0.15
+  #   y <- max(c(est[0], tru[0]))
+  #   z <- min(c(est[right], tru[right]))
+  #   if (y <= z) { # (enzure y > z, and if not flip)
+  #     t <- y
+  #     y <- z
+  #     z <- t
+  #   }
+  #   if (y >= 0) {
+  #     up <- (1 + scale) * y
+  #   } else {
+  #     up <- (1 - scale) * y
+  #   }
+  #   if (z <= 0) {
+  #     low <- (1 + scale) * z
+  #   } else {
+  #     low <- (1 - scale) * z
+  #   }
+  # }
 
-  # Place error curve vectors into dataframe for plotting.
-  df <- as.data.frame(star)
-  df$hat <- hat
-  names(df) <- c("Truth", "Estimate")
-  df <- reshape::melt(df)
+  # Coerce error curve vectors into dataframe for plotting.
+  df <- as.data.frame(tru)
+  df$est <- est
+  names(df) <- c("True", "Estimated")
+  invisible( capture.output( df <- reshape::melt(df) ) )
   df$iteration <- 1:k
 
   # Plot the error curves.
@@ -94,7 +102,7 @@ plot_error_curve <- function(hat, star, up = 1, low = -5, left = 0, right = 100,
       labels =
         c(
           expression(group("|", B^t - B^"*", "|")[F]),
-          expression(group("|", B^t - hat(B), "|")[F])
+          expression(group("|", B^t - est(B), "|")[F])
         ),
       values = c("blue", "red")
     ) +

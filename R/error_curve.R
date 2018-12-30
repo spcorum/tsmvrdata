@@ -20,19 +20,22 @@
 #'
 #' @export
 error_curve <- function(Hat.list, Star = NULL) {
+
   stopifnot(
-    is.list(Hat.list), is.matrix(Star) || is.null(Star),
-    length(Hat.list) > 0, all(sapply(Hat.list, is.matrix)),
+    is.list(Hat.list),
+    length(Hat.list) > 0,
+    all(sapply(Hat.list, is.matrix)),
     length(unique(lapply(Hat.list, dim))) == 1,
-    is.null(Star) || dim(Hat.list[[1]]) == dim(Star)
+    is.null(Star) ||
+      (is.matrix(Star) &&
+        unique(lapply(Hat.list, dim))[[1]] == dim(Star)
+      )
   )
 
-  K <- length(Hat.list)
-  error_curve <- rep(0, K)
-  Final = 0
-  if (is.null(Star)) Final = Hat.list[[K]]
-  else Final = Star
-  for (k in 1:K) error_curve[k] <- norm(Hat.list[[k]] - Final, "F")
+  k = length(Hat.list)
+  error_curve = rep(0, k)
+  if (is.null(Star)) Star = Hat.list[[k]]
+  for (i in 1:k) error_curve[i] = norm(Hat.list[[k]] - Star, "F")
 
   return(error_curve)
 }

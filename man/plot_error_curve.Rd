@@ -4,14 +4,14 @@
 \alias{plot_error_curve}
 \title{Plot error curves}
 \usage{
-plot_error_curve(hat, star, up = 1, low = -5, left = 0,
-  right = 100, auto = T)
+plot_error_curve(est, tru, up = 1, low = -5, left = 0, right = 100,
+  auto = T)
 }
 \arguments{
-\item{hat}{numeric vector representing the errors between iterates
+\item{est}{numeric vector representing the errors between iterates
 and the final iterate}
 
-\item{star}{numeric vector representing the errors between iterates
+\item{tru}{numeric vector representing the errors between iterates
 and the ground truth}
 
 \item{up}{upper limit of vertical axis}
