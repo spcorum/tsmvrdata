@@ -6,7 +6,7 @@
 #' @param mu mean (\eqn{\mu}) (numeric)
 #' @param Sigma positive definite covariance matrix (\eqn{\Sigma})
 #' @param reps number of random matrix realizations to return (positive integer-valued numeric)
-#' @param seed sets seed for pseudorandom number generator (numeric)
+#' @param seed seed for pseudo-random number generator (numeric)
 #'
 #' @return Returns a \code{rep} length list of matrices of \code{n}
 #' stacked vectors, each an iid. realization of \eqn{N(\mu,\Sigma)}.

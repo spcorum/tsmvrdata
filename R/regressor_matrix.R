@@ -7,7 +7,7 @@
 #' @param q number of regression responses (positive integer)
 #' @param b1 a Bernoulli parameter controlling the sparsity of the regressor matrix (0 <= \code{s1} <= 1)
 #' @param b2 a second Bernoulli parameter controlling the sparsity of the regressor matrix (0 <= \code{s2} <= 1)
-#' @param seed seed for pseudorandom number generator (optional)
+#' @param seed seed for pseudo-random number generator (numeric)
 #'
 #' @return Returns a random sparse regressor matrix of dimension
 #' \code{p} x \code{q} with expected sparsity \code{b1} \eqn{x} \code{b2}.

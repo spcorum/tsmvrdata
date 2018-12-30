@@ -22,7 +22,7 @@
 #' @param zero_appeal Barabasi algorithm baseline attractiveness for SFN covariance matrix (positive numeric)
 #' @param min_ev minimum eigenvalue of SFN covariance matrix (\code{min_ev} > 0) (ensures matrix is PSD) )
 #' @param reps number of randomly drawn datasets to return (positive integer)
-#' @param seed seed for pseudorandom number generator
+#' @param seed seed for pseudo-random number generator
 #'
 #' @return Returns a list of length \code{reps}. Each entry is itself
 #' a comprising a synthetic sparse multivariate dataset: a regressor

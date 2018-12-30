@@ -24,17 +24,17 @@
 plot_error_curve <- function(est, tru, up = 1,
                              low = -5, left = 0,
                              right = 100, auto = T) {
+  stopifnot(
+    length(est) == length(tru),
+    is.numeric(est), is.numeric(tru),
+    up %% 1 == 0, low %% 1 == 0,
+    left %% 1 == 0, right %% 1 == 0,
+    up > low, left < right
+  )
 
-  stopifnot(length(est) == length(tru),
-            is.numeric(est), is.numeric(tru),
-            up %% 1 == 0, low %% 1 == 0,
-            left %% 1 == 0, right %% 1 == 0,
-            up > low, left < right
-     )
-
-  k = length(est)
-  logest = log2(est)
-  logtru = log2(tru)
+  k <- length(est)
+  logest <- log2(est)
+  logtru <- log2(tru)
 
   # # If auto == T, calculate automatic axes limits.
   # if (auto == T) {
@@ -84,7 +84,7 @@ plot_error_curve <- function(est, tru, up = 1,
   df <- as.data.frame(tru)
   df$est <- est
   names(df) <- c("True", "Estimated")
-  invisible( capture.output( df <- reshape::melt(df) ) )
+  invisible(capture.output(df <- reshape::melt(df)))
   df$iteration <- 1:k
 
   # Plot the error curves.

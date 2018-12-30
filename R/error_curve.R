@@ -20,7 +20,6 @@
 #'
 #' @export
 error_curve <- function(Hat.list, Star = NULL) {
-
   stopifnot(
     is.list(Hat.list),
     length(Hat.list) > 0,
@@ -32,10 +31,10 @@ error_curve <- function(Hat.list, Star = NULL) {
       )
   )
 
-  k = length(Hat.list)
-  error_curve = rep(0, k)
-  if (is.null(Star)) Star = Hat.list[[k]]
-  for (i in 1:k) error_curve[i] = norm(Hat.list[[k]] - Star, "F")
+  k <- length(Hat.list)
+  error_curve <- rep(0, k)
+  if (is.null(Star)) Star <- Hat.list[[k]]
+  for (i in 1:k) error_curve[i] <- norm(Hat.list[[k]] - Star, "F")
 
   return(error_curve)
 }
