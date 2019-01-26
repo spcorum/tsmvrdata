@@ -26,5 +26,5 @@ Creates a random realization of a sparse multivariate regressor
 matrix.
 }
 \references{
-\insertRef{MRCE}{tsmvrextras}
+\insertRef{MRCE}{tsmvrdata}
 }

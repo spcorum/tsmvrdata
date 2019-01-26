@@ -35,7 +35,7 @@
 #' \code{\link[tsmvr]{tsmvr_solve}}.
 #'
 #' @references
-#' \insertRef{MRCE}{tsmvrextras}
+#' \insertRef{MRCE}{tsmvrdata}
 #'
 #' @export
 make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1,
@@ -59,12 +59,11 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1,
 
   # Calculate the auxillary and error covariance matrices --------------
   Sigma_x <- covariance_matrix(
-    p,
-    type = "AR1", rho = rho_x
+      p, type = type, rho = rho_err, h = h, power = power,
+      zero_appeal = zero_appeal, n_edge = n_edge, min_ev = min_ev
   )
   Sigma_err <- covariance_matrix(
-    q,
-    type = type, rho = rho_err, h = h, power = power,
+    q, type = type, rho = rho_err, h = h, power = power,
     zero_appeal = zero_appeal, n_edge = n_edge, min_ev = min_ev
   )
 
@@ -72,16 +71,20 @@ make_data <- function(n, p, q, b1 = sqrt(0.1), b2 = sqrt(0.1), sigma = 1,
   X <- mvrnorm(n, rep(0, p), Sigma_x$covariance, seed = seed)[[1]]
   B <- regressor_matrix(p, q, b1, b2, seed = seed)
   XB <- X %*% B
-  E.list <- mvrnorm(n, rep(0, q), Sigma_err$covariance, reps, seed = seed)
+  E.list <- mvrnorm(
+    n, rep(0, q), Sigma_err$covariance, reps, seed = seed
+   )
   data.list <- as.list(rep(list(NULL), reps))
   for (i in 1:reps) {
+    Y = XB + sigma^2 * E.list[[i]]
     data.list[[i]]$X <- X
     data.list[[i]]$B <- B
-    data.list[[i]]$Y <- XB + sigma^2 * E.list[[i]]
+    data.list[[i]]$Y <- Y
     data.list[[i]]$E <- E.list[[i]]
     data.list[[i]]$Sigma <- Sigma_err$covariance
     data.list[[i]]$Omega <- Sigma_err$precision
-    data.list[[i]]$Sigma_x <- Sigma_x$covariance
+    data.list[[i]]$Sigma_x <- Sigma_x
+    # data.list[[i]]$Sigma_r <- crossprod(Y-XB)
   }
 
   return(data.list)

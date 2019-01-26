@@ -13,7 +13,7 @@
 #' @param n_edge Barabasi algorithm number of edges per step for SFN covariance matrix (positive integer)
 #' @param min_ev minimum eigenvalue of SFN covariance matrix (\code{min_ev} > 0) (ensures matrix is PSD) )
 #' @references
-#' \insertRef{MRCE}{tsmvrextras}
+#' \insertRef{MRCE}{tsmvrdata}
 #'
 #' \insertRef{chen2016high}{tsmvr}
 #' @return A list of two matrices, the \code{covariance} matrix and the

@@ -1,4 +1,4 @@
 library(testthat)
-library(tsmvrextras)
+library(tsmvrdata)
 
-test_check("tsmvrextras")
+test_check("tsmvrdata")

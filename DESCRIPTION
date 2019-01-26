@@ -1,6 +1,6 @@
-Package: tsmvrextras
-Title: Extra Features for tsmvr
-Version: 0.0.0.2
+Package: tsmvrdata
+Title: Datasets for tsmvr
+Version: 0.0.0.9000
 Authors@R: 
     person(given = "Sean",
            family = "Corum",
@@ -40,5 +40,5 @@ Suggests:
     covr,
     testthat
 RoxygenNote: 6.1.0
-URL: https://github.com/spcorum/tsmvrextras
-BugReports: https://github.com/spcorum/tsmvrextras/issues
+URL: https://github.com/spcorum/tsmvrdata
+BugReports: https://github.com/spcorum/tsmvrdata/issues

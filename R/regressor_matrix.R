@@ -19,7 +19,7 @@
 #'
 #' See also \code{\link{{rbern}}.
 #'
-#' @references \insertRef{MRCE}{tsmvrextras}
+#' @references \insertRef{MRCE}{tsmvrdata}
 #'
 #' @export
 regressor_matrix <- function(p, q, b1 = sqrt(0.1), b2 = sqrt(0.1),

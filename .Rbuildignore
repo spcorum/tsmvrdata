@@ -4,5 +4,5 @@
 ^\.travis\.yml$
 ^README\.Rmd$
 ^LICENSE\.md$
-^tsmvrextras\.Rproj$
+^tsmvrdata\.Rproj$
 ^\.Rproj\.user$

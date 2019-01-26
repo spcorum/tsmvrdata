@@ -1,23 +1,23 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-tsmvrextras
-===========
+tsmvrdata
+=========
 
-**tsmvrextras** is the companion R package to the [tsmvr](https://github.com/spcorum/tsmvr) (Truly Sparse Multivariate Regression) package. **tsmvrextras** adds functionality by allowing the user to create synthetic datasets or load real datasets that are readily inputted into the *tsmvr* algorithm. It also contains functions to visualize and evaluate the quality of the solutions found by *tsmvr*.
+**tsmvrdata** is the companion R package to the [tsmvr](https://github.com/spcorum/tsmvr) (Truly Sparse Multivariate Regression) package. **tsmvrdata** adds functionality by allowing the user to create synthetic datasets or load real datasets that are readily inputted into the *tsmvr* algorithm. It also contains functions to visualize and evaluate the quality of the solutions found by *tsmvr*.
 
 Development Status
 ------------------
 
-[![Travis build status](https://travis-ci.org/spcorum/tsmvrextras.svg?branch=master)](https://travis-ci.org/spcorum/tsmvrextras) [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/spcorum/tsmvrextras?branch=master&svg=true)](https://ci.appveyor.com/project/spcorum/tsmvrextras) [![Coverage status](https://codecov.io/gh/spcorum/tsmvrextras/branch/master/graph/badge.svg)](https://codecov.io/github/spcorum/tsmvrextras?branch=master)
+[![Travis build status](https://travis-ci.org/spcorum/tsmvrdata.svg?branch=master)](https://travis-ci.org/spcorum/tsmvrdata) [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/spcorum/tsmvrdata?branch=master&svg=true)](https://ci.appveyor.com/project/spcorum/tsmvrdata) [![Coverage status](https://codecov.io/gh/spcorum/tsmvrdata/branch/master/graph/badge.svg)](https://codecov.io/github/spcorum/tsmvrdata?branch=master)
 
 Installation
 ------------
 
-You can install the development version of tsmvrextras from [Github](https://github.com) with:
+You can install the development version of tsmvrdata from [Github](https://github.com) with:
 
 ``` r
 library(devtools)
-install_github("tsmvrextras")
+install_github("tsmvrdata")
 ```
 
 Examples

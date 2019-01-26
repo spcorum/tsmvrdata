@@ -34,7 +34,7 @@ of the following types: first-order autoregressive [AR(1)],
 fractional gaussian noise [FGN], or scale free network [SFN].
 }
 \references{
-\insertRef{MRCE}{tsmvrextras}
+\insertRef{MRCE}{tsmvrdata}
 
 \insertRef{chen2016high}{tsmvr}
 }

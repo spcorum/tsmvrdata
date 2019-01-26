@@ -5,7 +5,7 @@
 #' @param q dimension of covariance matrix (positive integer)
 #' @param rho autoregression parameter (0 <= \code{rho} <= 1)
 #' @references
-#' \insertRef{MRCE}{tsmvrextras}
+#' \insertRef{MRCE}{tsmvrdata}
 #' @return Returns an AR(1) covariance matrix of parameter \eqn{\rho} and
 #' dimension \eqn{q x q}.
 #' @export

@@ -27,7 +27,7 @@ error_curve <- function(Hat.list, Star = NULL) {
     length(unique(lapply(Hat.list, dim))) == 1,
     is.null(Star) || is.matrix(Star),
     is.matrix(Star) &&
-        unique(lapply(Hat.list, dim))[[1]] == dim(Star)
+      unique(lapply(Hat.list, dim))[[1]] == dim(Star)
   )
 
   k <- length(Hat.list)

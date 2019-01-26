@@ -19,7 +19,7 @@
 # #' See also \code{\link[tsmvr]{squared_error}}.
 #'
 #' @references
-#' \insertRef{MRCE}{tsmvrextras}
+#' \insertRef{MRCE}{tsmvrdata}
 #'
 #' @export
 model_error <- function(U, V, Sigma = NULL) {

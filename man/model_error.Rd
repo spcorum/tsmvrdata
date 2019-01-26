@@ -28,5 +28,5 @@ model error using the identity covariance matrix, which is
 equivalent the normalized squared matrix error).
 }
 \references{
-\insertRef{MRCE}{tsmvrextras}
+\insertRef{MRCE}{tsmvrdata}
 }

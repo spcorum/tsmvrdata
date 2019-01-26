@@ -62,5 +62,5 @@ matrix, \eqn{Y} is the response matrix, and \eqn{E} is the matrix
 error term.
 }
 \references{
-\insertRef{MRCE}{tsmvrextras}
+\insertRef{MRCE}{tsmvrdata}
 }
