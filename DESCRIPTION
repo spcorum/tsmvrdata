@@ -6,39 +6,27 @@ Authors@R:
            family = "Corum",
            role = c("aut", "cre"),
            email = "spcorum@gmail.com")
-Description: This package contains extra features and
-    functions for the Truly Sparse Multivariate Regression (tsmvr)
-    package. These features include (1) functions for creating and
-    evaluate sparse regression datasets that work will with tsmvr, (2)
-    real datasets pre-processed to work with tsmvr (pre-processing
-    functions included), and (3) functions for testing a pipeline of (a)
-    running the algorithm on synthetic data and then evaluating the
-    results or (b) running the on real data and evaluating the
-    results.
+Description: This package contains real data sets for use with the 
+    tsmvr package.
 Language: en-US
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: 
     tsmvr (>= 0.0.0.9000),
-    ggplot2,
-    AUC,
-    MASS,
-    igraph,
-    pROC,
-    Rdpack,
-    pracma,
-    stats,
-    expm,
-    reshape,
-    matrixcalc
+    Rdpack
 RdMacros: 
     Rdpack
 Remotes: 
     spcorum/tsmvr
 Suggests: 
     covr,
-    testthat
+    testthat,
+    knitr,
+    rmarkdown,
+    foreign,
+    rlists
 RoxygenNote: 6.1.0
 URL: https://github.com/spcorum/tsmvrdata
 BugReports: https://github.com/spcorum/tsmvrdata/issues
+VignetteBuilder: knitr
