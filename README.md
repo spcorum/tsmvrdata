@@ -1,9 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-tsmvrdata
-=========
+Introduction
+============
 
-**tsmvrdata** is the companion R package to the [tsmvr](https://github.com/spcorum/tsmvr) (Truly Sparse Multivariate Regression) package. **tsmvrdata** adds functionality by allowing the user to create synthetic datasets or load real datasets that are readily inputted into the *tsmvr* algorithm. It also contains functions to visualize and evaluate the quality of the solutions found by *tsmvr*.
+[tsmvrdata](https://github.com/spcorum/tsmvrdata) is the companion R package to the [tsmvr](https://github.com/spcorum/tsmvr) (Truly Sparse Multivariate Regression) package. [tsmvrdata](https://github.com/spcorum/tsmvrdata) contains cleaned and normalized datasets for use with multivariate (multiple response) regression, and [tsmvr](https://github.com/spcorum/tsmvr) in particualte.
 
 Development Status
 ------------------
@@ -20,61 +20,32 @@ library(devtools)
 install_github("tsmvrdata")
 ```
 
-Examples
+Loading data
+------------
+
+Here is an example of how to load a dataset
+
+``` r
+data(concrete)
+```
+
+Documentation
+-------------
+
+To see the documentation for a dataset, see its corresponding help page.
+
+Datasets
 --------
 
-Create a synthetic dataset and use *tsmvr* to perform sparse multivariate regression.
+Here is a list of the datasets included in this package:
 
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-Evaluate the quality of the solution.
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-Visualize the iterates converging on the solution.
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-Load a real dataset and use *tsmvr* to perform sparse multivariate regression.
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-Alternatively perform k-fold cross-validation using *tsmvr* on the same dataset.
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
+-   concrete - concrete measurement and quality attributes
+-   facebook - facebook page attributes and user responses
+-   location - mobile device locations
+-   propolsion - simulated naval engine propulsion measurements
+-   stocks - stock performace
+-   dataset 6 - my description
+-   dataset 7 - my description
+-   dataset 8 - my description
+-   dataset 9 - my description
+-   dataset 10 - my description
