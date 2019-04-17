@@ -10,7 +10,7 @@
 #' \insertRef{chen2016high}{tsmvr}
 #'
 #' @return Returns an Hub graph precision matrix
-#' @export
+# #' @export
 precision_hub <- function(q, g, diag_val = 2, edge_val=0.3) {
   stopifnot(
     q %% 1 == 0, q > 0,

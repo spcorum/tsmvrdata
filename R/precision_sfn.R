@@ -20,7 +20,7 @@
 #' \code{\link[igraph]{sample_pa}}.
 #'
 #' @return Returns an FGN covariance matrix.
-#' @export
+# #' @export
 precision_sfn <- function(q, n_edge = 1, shift = 1, power = 1, zero_appeal = 1) {
   stopifnot(
     q %% 1 == 0, q > 0, power > 0, zero_appeal > 0, n_edge > 0,

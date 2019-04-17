@@ -11,7 +11,7 @@
 #' @references
 #' \insertRef{MRCE}{tsmvr}
 #'
-#' @export
+# #' @export
 squared_error <- function(U, V) {
   stopifnot(is.matrix(U), is.matrix(V), all(dim(U) == dim(V)))
   A <- U - V

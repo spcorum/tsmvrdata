@@ -21,7 +21,7 @@
 #'
 #' @return A list of two matrices, the \code{covariance} matrix and the
 #' \code{precision} matrix.
-#' @export
+# #' @export
 covariance_matrix <- function(q, type = "AR1", rho = 0.7, h = 0.9,
                               n_edge = 1, shift = 1,  power = 1, zero_appeal = 1,
                               g = 1, diag_val = 1, edge_val = 0.3) {

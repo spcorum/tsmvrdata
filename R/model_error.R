@@ -21,7 +21,7 @@
 #' @references
 #' \insertRef{MRCE}{tsmvr}
 #'
-#' @export
+# #' @export
 model_error <- function(U, V, Sigma = NULL) {
   stopifnot(
     is.matrix(U), is.matrix(V),

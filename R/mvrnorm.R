@@ -13,7 +13,7 @@
 #' If \code{reps}=1, then a single matrix returned not in a list. Otherwise,
 #' \code{reps} matrices are returned in a list.
 #'
-#' @export
+# #' @export
 mvrnorm <- function(n, mu = 0, Sigma, reps = 1, seed = NULL) {
   p <- length(mu)
   Sigma.dim <- dim(Sigma)

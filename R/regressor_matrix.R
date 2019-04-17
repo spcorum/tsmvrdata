@@ -21,7 +21,7 @@
 #'
 #' @references \insertRef{MRCE}{tsmvr}
 #'
-#' @export
+# #' @export
 regressor_matrix <- function(p, q, b1 = sqrt(0.1), b2 = sqrt(0.1),
                              seed = NULL) {
   stopifnot(

@@ -8,7 +8,7 @@
 #' \insertRef{MRCE}{tsmvr}
 #' @return Returns an AR(1) covariance matrix of parameter \eqn{\rho} and
 #' dimension \eqn{q x q}.
-#' @export
+# #' @export
 covar_ar1 <- function(q, rho = 0.7) {
   stopifnot(q %% 1 == 0, q > 0, rho >= 0, rho < 1)
   X <- diag(q)
