@@ -30,7 +30,7 @@ process_location = function() {
     unlink('UJIndoorLoc', recursive = TRUE)
 
     # Remove metatata and columns for classification
-    location = location[,1:(length(df)-7)]
+    location = location[,1:(length(location)-7)]
 
     # Remove columns with no variance
     idx = which( sapply (location,sd) == 0 )

@@ -39,7 +39,7 @@ process_stocks = function() {
     stocks = as.data.frame(lapply(stocks,function(x) as.numeric(x)))
 
     # Normalize
-    for (i in 2:length(stocks)) stocks[,i] = stocks[,i] - mean(stocks[,i])
+    for (i in 2:length(stocks)) stocks[,i] = (stocks[,i] - mean(stocks[,i]))/sd(stocks[,i])
 
     # Save
     usethis::use_data(stocks, overwrite = TRUE)
